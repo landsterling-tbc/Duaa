@@ -3,283 +3,747 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دعاء شامل كامل</title>
+<meta name="description" content="ربنا يجعله خير — دعاء شامل كامل مع عدّاد للتسبيح والأذكار">
+<title>ربنا يجعله خير</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg:       #0d1f15;
-    --bg2:      #122019;
-    --card:     #172a1e;
-    --card2:    #1c3224;
-    --border:   #2d5a3d;
-    --gold:     #c9a84c;
-    --gold2:    #e8c97a;
-    --gold3:    #f7e4a8;
-    --green:    #3a9c6a;
-    --green2:   #52c98d;
-    --text:     #eef5ec;
-    --text2:    #b5d4bc;
-    --src:      #c9a84c99;
-    --radius:   16px;
-  }
+:root {
+  /* قيم الوضع الليلي (الافتراضي) */
+  --bg: #0a1810;
+  --card: #132318;
+  --border: #2d5a3d;
+  --gold: #c9a574;
+  --gold-dark: #8b6f47;
+  --gold-light: #d4b896;
+  --text: #e8f1e6;
+  --text-muted: #a8c2a6;
+  --accent: #3a9c6a;
+  --green-1: #1e5c3a;
+  --green-2: #2a6a45;
+  --shadow: #0000002a;
+  --success: #52c98d;
+  --glow: #1e5c3a33;
+  --radius: 12px;
 
-  * { margin:0; padding:0; box-sizing:border-box; }
+  /* قيم محفوظة للوضع النهاري (تُستخدم عبر body.light-mode أدناه) */
+  --bg-light: #faf8f3;
+  --card-light: #ffffff;
+  --border-light: #c9bfa6;
+  --gold-light-mode: #a17a45;
+  --text-light: #2b3a2a;
+  --text-muted-light: #5a6e54;
+  --shadow-light: #0000001a;
+  --glow-light: #3a9c6a18;
+  --green-1-light: #2d8659;
+  --green-2-light: #3aa06c;
+}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Noto Naskh Arabic', serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+/* الوضع النهاري: نعيد تعريف نفس المتغيرات المستخدمة في كل مكان،
+   فلا حاجة لتكرار override لكل عنصر على حدة */
+body.light-mode {
+  --bg: var(--bg-light);
+  --card: var(--card-light);
+  --border: var(--border-light);
+  --gold: var(--gold-light-mode);
+  --text: var(--text-light);
+  --text-muted: var(--text-muted-light);
+  --shadow: var(--shadow-light);
+  --glow: var(--glow-light);
+  --green-1: var(--green-1-light);
+  --green-2: var(--green-2-light);
+}
 
-  /* ── ambient glow ── */
-  body::before {
-    content:'';
-    position:fixed; top:-200px; left:50%;
-    transform:translateX(-50%);
-    width:700px; height:500px;
-    background: radial-gradient(ellipse, #1e5c3a44 0%, transparent 70%);
-    pointer-events:none; z-index:0;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  /* ── header ── */
-  header {
-    text-align:center;
-    padding: 48px 20px 32px;
-    position:relative; z-index:1;
-  }
-  .basmala {
-    font-family:'Noto Kufi Arabic', serif;
-    font-size: clamp(26px, 6vw, 42px);
-    color: var(--gold2);
-    letter-spacing:.02em;
-    margin-bottom:16px;
-    text-shadow: 0 0 40px #c9a84c55;
-  }
-  .main-title {
-    font-family:'Noto Kufi Arabic', serif;
-    font-size: clamp(20px, 4.5vw, 32px);
-    color: var(--text);
-    margin-bottom:8px;
-  }
-  .sub-title {
-    font-size: 14px;
-    color: var(--text2);
-    margin-bottom:28px;
-  }
-  .ornament {
-    display:flex; align-items:center; justify-content:center;
-    gap:12px; margin:0 auto 8px;
-    max-width:420px;
-  }
-  .ornament-line { flex:1; height:1px; background:linear-gradient(to left,transparent,var(--gold),transparent); }
-  .ornament-diamond {
-    width:10px; height:10px;
-    background:var(--gold); transform:rotate(45deg);
-    box-shadow: 0 0 10px var(--gold);
-  }
+html {
+  scroll-behavior: smooth;
+}
 
-  /* ── nav tabs ── */
-  .nav-wrap {
-    position:sticky; top:0; z-index:100;
-    background: linear-gradient(to bottom, var(--bg) 80%, transparent);
-    padding: 12px 0 8px;
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background .4s ease, color .4s ease;
+}
+
+/* Light mode */
+/* Ambient glow effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: -300px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(ellipse 400px 250px, var(--glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  transition: background .4s ease;
+}
+
+/* ─────── HEADER ───────── */
+header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 48px 20px 32px;
+}
+
+.basmala {
+  font-family: 'Noto Kufi Arabic', serif;
+  font-size: clamp(32px, 7vw, 48px);
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+  text-shadow: 0 0 30px var(--gold);
+  font-weight: 700;
+}
+
+.title {
+  font-family: 'Noto Kufi Arabic', serif;
+  font-size: clamp(22px, 5vw, 36px);
+  color: var(--text);
+  margin-bottom: 8px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 0 auto 12px;
+  max-width: 500px;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to left, transparent, var(--gold), transparent);
+}
+
+.divider-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--gold);
+}
+
+/* ─────── TOOLBAR ───────── */
+.nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background: linear-gradient(to bottom, var(--bg), var(--bg) 90%, transparent);
+  transition: background .4s ease;
+  padding: 12px 0;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px 10px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search-wrap {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 14px;
+  padding: 10px 40px 10px 16px;
+  border-radius: 50px;
+  outline: none;
+  transition: all .2s ease;
+}
+
+.search-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(184, 149, 106, 0.15);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.65;
+}
+
+.search-btn {
+  position: absolute;
+  left: 12px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 6px;
+  transition: color .2s ease;
+}
+
+.search-btn:hover {
+  color: var(--gold);
+}
+
+.search-clear {
+  display: none;
+  position: absolute;
+  left: 12px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color .2s ease;
+}
+
+.search-clear:hover {
+  color: var(--gold);
+}
+
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--gold);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s ease;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  border-color: var(--gold);
+  transform: scale(1.08);
+}
+
+.theme-toggle:active {
+  transform: scale(0.96);
+}
+
+/* ─────── TABS ───────── */
+.nav-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.nav-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 13px;
+  padding: 8px 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .2s ease;
+  flex-shrink: 0;
+}
+
+.tab-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--green-1), var(--green-2));
+  border-color: var(--gold);
+  color: #e8d9b8;
+  box-shadow: 0 0 12px rgba(184, 149, 106, 0.25);
+}
+
+/* ─────── SECTIONS ───────── */
+.section {
+  display: none;
+  animation: fadeIn .3s ease;
+}
+
+.section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.main-content {
+  padding: 20px 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.sec-header {
+  text-align: center;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(30, 92, 58, 0.12), rgba(42, 106, 69, 0.08));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+  font-family: 'Noto Kufi Arabic', serif;
+  font-size: clamp(15px, 3vw, 18px);
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: all .2s ease;
+}
+
+/* ─────── DUA CARDS ───────── */
+.dua-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: all .2s ease;
+  position: relative;
+}
+
+.dua-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 4px 16px var(--shadow);
+}
+
+.dua-text {
+  font-size: clamp(15px, 2.8vw, 18px);
+  line-height: 2;
+  color: var(--text);
+  margin-bottom: 12px;
+  text-align: right;
+  font-weight: 500;
+}
+
+.dua-source {
+  font-size: 12px;
+  color: var(--gold);
+  text-align: center;
+  opacity: 0.85;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  margin-top: 12px;
+}
+
+.dua-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.dua-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all .2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dua-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.dua-btn.success {
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.dua-btn.error {
+  border-color: #e07856;
+  color: #e07856;
+}
+
+/* ─────── TASBIH CARDS ───────── */
+.tasbih-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.tasbih-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  transition: all .2s ease;
+}
+
+.tasbih-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.tasbih-title {
+  font-family: 'Noto Kufi Arabic', serif;
+  font-size: clamp(14px, 2.5vw, 16px);
+  color: var(--gold);
+  text-align: center;
+  line-height: 1.7;
+  font-weight: 600;
+}
+
+.tasbih-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: -8px;
+}
+
+.counter-container {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.counter-display {
+  font-family: 'Noto Kufi Arabic', serif;
+  font-size: clamp(40px, 8vw, 56px);
+  color: var(--gold);
+  min-width: 70px;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(184, 149, 106, 0.4);
+  transition: transform .1s ease, color .1s ease;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.counter-display.pop {
+  animation: counterPop .2s ease;
+  color: var(--gold-light);
+}
+
+@keyframes counterPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.count-btn {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--green-1), var(--green-2));
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  color: #e8d9b8;
+  font-size: 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .15s ease;
+  box-shadow: 0 0 12px rgba(184, 149, 106, 0.2);
+  flex-shrink: 0;
+  font-weight: bold;
+}
+
+.count-btn:hover {
+  box-shadow: 0 0 20px rgba(184, 149, 106, 0.4);
+  transform: scale(1.08);
+}
+
+.count-btn:active {
+  transform: scale(0.92);
+}
+
+.progress-section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to left, var(--gold), var(--accent));
+  border-radius: 10px;
+  transition: width .3s ease;
+  width: 0%;
+}
+
+.progress-target {
+  font-size: 11px;
+  color: var(--text-muted);
+  min-width: 40px;
+  text-align: left;
+}
+
+.tasbih-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.reset-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all .2s ease;
+  flex-shrink: 0;
+}
+
+.reset-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.complete-badge {
+  display: none;
+  background: linear-gradient(135deg, rgba(82, 201, 141, 0.2), rgba(61, 166, 121, 0.15));
+  border: 1px solid var(--success);
+  border-radius: 50px;
+  padding: 4px 12px;
+  font-size: 11px;
+  color: var(--success);
+  font-weight: 600;
+  animation: badgePop .3s ease;
+}
+
+@keyframes badgePop {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ─────── SEARCH RESULTS ───────── */
+.search-results {
+  display: none;
+  padding: 20px 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.search-results.active {
+  display: block;
+  animation: fadeIn .3s ease;
+}
+
+.search-meta {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: var(--card);
+  border-radius: var(--radius);
+}
+
+.search-empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 40px 20px;
+  font-size: 14px;
+}
+
+.result-label {
+  font-size: 11px;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 8px;
+  opacity: 0.8;
+  font-weight: 600;
+}
+
+mark {
+  background: var(--gold);
+  color: #1a1a1a;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+/* ─────── FOOTER ───────── */
+footer {
+  text-align: center;
+  padding: 40px 20px 50px;
+  color: var(--text-muted);
+  font-size: 13px;
+  position: relative;
+  z-index: 1;
+}
+
+footer p {
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+footer .gold-text {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* ─────── BACK TO TOP ───────── */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  left: 20px;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--green-1), var(--green-2));
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  color: #e8d9b8;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  transition: all .3s ease;
+  box-shadow: 0 4px 16px var(--shadow);
+}
+
+.back-to-top.show {
+  display: flex;
+}
+
+.back-to-top:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(184, 149, 106, 0.3);
+}
+
+.back-to-top:active {
+  transform: translateY(0);
+}
+
+/* ─────── RESPONSIVE ───────── */
+@media (max-width: 600px) {
+  .toolbar {
+    padding: 0 12px 8px;
   }
   .nav-tabs {
-    display:flex; gap:8px; overflow-x:auto; padding:0 16px;
-    scrollbar-width:none;
-    justify-content: flex-start;
+    padding: 0 12px;
   }
-  .nav-tabs::-webkit-scrollbar { display:none; }
-  .tab-btn {
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--text2);
-    font-family:'Noto Naskh Arabic', serif;
-    font-size:13px;
-    padding:7px 16px;
-    border-radius:50px;
-    cursor:pointer;
-    white-space:nowrap;
-    transition:.2s;
-    flex-shrink:0;
-  }
-  .tab-btn:hover { border-color:var(--gold); color:var(--gold3); }
-  .tab-btn.active {
-    background:linear-gradient(135deg,#1e5c3a,#0f3321);
-    border-color:var(--gold);
-    color:var(--gold2);
-    box-shadow: 0 0 16px #c9a84c33;
-  }
-
-  /* ── sections ── */
-  .section { display:none; padding:16px; max-width:780px; margin:0 auto; }
-  .section.active { display:block; }
-
-  /* ── section header ── */
-  .sec-header {
-    text-align:center;
-    padding:14px 20px;
-    background:linear-gradient(135deg,#1a4d2e,#0f2d1a);
-    border:1px solid var(--gold);
-    border-radius:var(--radius);
-    margin-bottom:20px;
-    font-family:'Noto Kufi Arabic', serif;
-    font-size: clamp(15px, 3vw, 19px);
-    color: var(--gold3);
-    box-shadow: 0 0 24px #c9a84c22;
-  }
-
-  /* ── dua card ── */
-  .dua-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 22px 24px 16px;
-    margin-bottom:16px;
-    transition: border-color .2s, box-shadow .2s;
-    position:relative;
-  }
-  .dua-card:hover { border-color:#3d7a54; box-shadow: 0 4px 24px #00000044; }
-  .dua-text {
-    font-size: clamp(15px, 2.8vw, 18px);
-    line-height: 2.1;
-    color: var(--text);
-    margin-bottom:10px;
-    text-align:right;
-  }
-  .dua-source {
-    font-size:12px;
-    color: var(--gold);
-    text-align:center;
-    opacity:.8;
-    padding-top:8px;
-    border-top:1px solid #2d5a3d55;
-  }
-
-  /* ── TASBIH SECTION ── */
   .tasbih-grid {
-    display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap:16px;
+    grid-template-columns: 1fr;
   }
-  .tasbih-card {
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:20px;
-    display:flex; flex-direction:column; align-items:center; gap:14px;
-    transition:.2s;
+  .dua-btn {
+    font-size: 11px;
+    padding: 5px 12px;
   }
-  .tasbih-card:hover { border-color:var(--gold); }
-  .tasbih-label {
-    font-family:'Noto Kufi Arabic', serif;
-    font-size: clamp(15px,3vw,19px);
-    color:var(--gold3);
-    text-align:center;
-    line-height:1.8;
-  }
-  .tasbih-sublabel {
-    font-size:12px; color:var(--text2); text-align:center;
-    margin-top:-8px;
-  }
-  .counter-wrap {
-    display:flex; align-items:center; gap:16px;
-  }
-  .counter-num {
-    font-family:'Noto Kufi Arabic',serif;
-    font-size: clamp(40px,9vw,64px);
-    color:var(--gold2);
-    min-width:80px;
-    text-align:center;
-    text-shadow:0 0 30px #c9a84c66;
-    transition: transform .1s, color .1s;
-    line-height:1;
-  }
-  .counter-num.pop {
-    transform:scale(1.15);
-    color:var(--gold3);
-  }
-  .btn-count {
-    width:62px; height:62px;
-    background:linear-gradient(135deg,#1e5c3a,#0f3321);
-    border:2px solid var(--gold);
-    border-radius:50%;
-    color:var(--gold2);
-    font-size:28px;
-    cursor:pointer;
-    transition:.15s;
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:0 0 16px #c9a84c33;
-    flex-shrink:0;
-    user-select:none;
-  }
-  .btn-count:hover { background:linear-gradient(135deg,#255e3d,#1a4028); box-shadow:0 0 24px #c9a84c55; }
-  .btn-count:active { transform:scale(.93); }
-  .tasbih-footer {
-    display:flex; align-items:center; gap:8px; width:100%;
-    justify-content:space-between;
-  }
-  .progress-bar-wrap {
-    flex:1; height:6px;
-    background:#1c3224; border-radius:10px; overflow:hidden;
-  }
-  .progress-bar {
-    height:100%; background:linear-gradient(to left,var(--gold),var(--green2));
-    border-radius:10px; transition:width .3s;
-    width:0%;
-  }
-  .btn-reset {
-    background:none; border:1px solid #2d5a3d;
-    color:var(--text2); font-family:'Noto Naskh Arabic',serif;
-    font-size:12px; padding:4px 12px; border-radius:50px; cursor:pointer;
-    transition:.2s; flex-shrink:0;
-  }
-  .btn-reset:hover { border-color:var(--gold); color:var(--gold); }
-  .target-label {
-    font-size:11px; color:var(--text2);
-  }
-  .complete-badge {
-    display:none;
-    background:linear-gradient(135deg,#1e5c3a,#0f3321);
-    border:1px solid var(--gold);
-    border-radius:50px;
-    padding:4px 14px;
-    font-size:12px; color:var(--gold2);
-    animation:fadeIn .3s;
-  }
-  @keyframes fadeIn { from{opacity:0;transform:scale(.9)} to{opacity:1;transform:scale(1)} }
+}
 
-  /* ── responsive ── */
-  @media(max-width:500px){
-    .tasbih-grid { grid-template-columns:1fr; }
-    header { padding:32px 16px 20px; }
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
-
-  /* ── scrollbar ── */
-  ::-webkit-scrollbar { width:6px; }
-  ::-webkit-scrollbar-track { background:#0d1f15; }
-  ::-webkit-scrollbar-thumb { background:#2d5a3d; border-radius:4px; }
+}
 </style>
 </head>
 <body>
 
 <header>
   <div class="basmala">﷽</div>
-  <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
-  <h1 class="main-title">دعاءٌ شاملٌ كامل</h1>
-  <p class="sub-title">في الدُّنيا والآخرة — للمسلم في كلِّ حال</p>
-  <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
+  <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+  <h1 class="title">ربَّنا يجعله خير</h1>
+  <p class="subtitle">دعاءٌ جامعٌ شاملٌ كامل للدُّنيا والآخرة</p>
+  <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
 </header>
 
 <div class="nav-wrap">
+  <div class="toolbar">
+    <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع الليلي/النهاري">🌙</button>
+    <div class="search-wrap">
+      <input type="text" class="search-input" id="searchInput" placeholder="ابحث في الأدعية…" aria-label="البحث">
+      <button class="search-btn" id="searchBtn" aria-label="بحث">🔍</button>
+      <button class="search-clear" id="searchClear" aria-label="مسح">✕</button>
+    </div>
+  </div>
   <div class="nav-tabs" id="navTabs"></div>
 </div>
 
-<main id="mainContent"></main>
+<div class="main-content">
+  <div id="mainSections"></div>
+  <div class="search-results" id="searchResults"></div>
+</div>
+
+<footer>
+  <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+  <p>نسألكم الدُّعاء لنا ولأهلنا ولجميع المسلمين</p>
+  <p class="gold-text">اللهمَّ صلِّ وسلِّم وبارك على سيِّدنا محمَّد وعلى آله وصحبه أجمعين</p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="العودة لأعلى"></button>
 
 <script>
+// ══════════════════════════════════════════════════════════════════════════════
+// CORE DATA & STATE
+// ══════════════════════════════════════════════════════════════════════════════
+
 const SECTIONS = [
   {
     id:'hamd', label:'الحمد والثناء',
@@ -289,6 +753,11 @@ const SECTIONS = [
       { text:'الحمدُ لله ربِّ العالمين حمدًا كثيرًا طيِّبًا مباركًا فيه،\nكما يُحبُّ ربُّنا ويَرضى، وكما ينبغي لجلال وجهه وعظيم سلطانه.', src:'' },
       { text:'سبحانك اللهمَّ وبحمدك، وتباركَ اسمُك، وتعالى جَدُّك، ولا إله غيرك.', src:'' },
       { text:'اللهمَّ لك الحمدُ ملءَ السَّماوات وملءَ الأرض،\nوملءَ ما شئتَ من شيءٍ بعد،\nلا مانعَ لما أعطيت ولا مُعطيَ لما منعت،\nولا ينفعُ ذا الجَدِّ منك الجَدُّ.', src:'متفق عليه' },
+      { text:'سبحانَ الله وبحمده، سبحانَ الله العظيم.\nسبحانَ الله والحمدُ لله ولا إله إلا الله والله أكبر،\nولا حولَ ولا قوَّةَ إلا بالله العليِّ العظيم.', src:'' },
+      { text:'الحمدُ لله الذي بنعمتِه تتمُّ الصَّالحات.', src:'صحيح ابن ماجه' },
+      { text:'اللهمَّ لا أُحصي ثناءً عليك، أنتَ كما أثنيتَ على نفسِك.', src:'صحيح مسلم' },
+      { text:'الحمدُ لله على كلِّ حالٍ، والحمدُ لله ربِّ العالمين.', src:'صحيح ابن ماجه' },
+      { text:'سبحانَ ربِّك ربِّ العزَّة عمَّا يَصِفون، وسلامٌ على المُرسَلين،\nوالحمدُ لله ربِّ العالمين.', src:'سورة الصَّافَّات: ١٨٠–١٨٢' },
     ]
   },
   {
@@ -297,6 +766,10 @@ const SECTIONS = [
     duas:[
       { text:'اللهمَّ صلِّ على محمَّد وعلى آل محمَّد،\nكما صلَّيتَ على إبراهيم وعلى آل إبراهيم إنَّك حميدٌ مجيد،\nاللهمَّ بارك على محمَّد وعلى آل محمَّد،\nكما باركتَ على إبراهيم وعلى آل إبراهيم إنَّك حميدٌ مجيد.', src:'متفق عليه' },
       { text:'اللهمَّ صلِّ وسلِّم وبارك على سيِّدنا محمَّد النَّبيِّ الأمِّيِّ الكريم،\nوعلى آله وصحبه أجمعين، ومن تبعهم بإحسانٍ إلى يوم الدِّين.', src:'' },
+      { text:'اللهمَّ صلِّ على محمَّدٍ عبدِك ورسولِك،\nكما صلَّيتَ على إبراهيم، وبارك على محمَّدٍ وآلِ محمَّد،\nكما باركتَ على آلِ إبراهيم في العالمين إنَّك حميدٌ مجيد.', src:'صحيح البخاري' },
+      { text:'اللهمَّ آتِ محمَّدًا الوسيلةَ والفضيلة،\nوابعَثه مقامًا محمودًا الذي وعدتَه.', src:'صحيح البخاري' },
+      { text:'اللهمَّ صلِّ على محمَّدٍ في الأوَّلين، وصلِّ على محمَّدٍ في الآخِرين،\nوصلِّ على محمَّدٍ في كلِّ وقتٍ وحين، وصلِّ على محمَّدٍ في الملأ الأعلى إلى يوم الدِّين.', src:'' },
+      { text:'اللهمَّ ارزُقني شفاعةَ نبيِّك محمَّدٍ ﷺ يومَ القيامة،\nواحشُرني في زُمرتِه وأسقِني من حوضِه شربةً هنيئةً لا أظمأُ بعدها أبدًا.', src:'' },
     ]
   },
   {
@@ -308,6 +781,10 @@ const SECTIONS = [
       { text:'اللهمَّ إنِّي ظلمتُ نفسي ظُلمًا كثيرًا ولا يغفرُ الذُّنوبَ إلَّا أنت،\nفاغفر لي مغفرةً من عندك وارحمني إنَّك أنت الغفورُ الرَّحيم.', src:'متفق عليه' },
       { text:'اللهمَّ إنَّك عفوٌّ كريمٌ تُحبُّ العفوَ فاعفُ عنِّي.', src:'صحيح الترمذي وابن ماجه' },
       { text:'ربِّ اغفر لي وتُب عليَّ إنَّك أنت التَّوَّابُ الرَّحيم.', src:'صحيح البخاري' },
+      { text:'اللهمَّ اغفر لي خطيئتي وجهلي وإسرافي في أمري،\nوما أنت أعلمُ به منِّي.\nاللهمَّ اغفر لي جِدِّي وهَزلي وخطئي وعمدي،\nوكلُّ ذلك عندي.', src:'متفق عليه' },
+      { text:'رَبِّ اغفر وارحم وأنت خيرُ الرَّاحمين.', src:'صحيح الترمذي' },
+      { text:'استغفرُ اللهَ ربِّي من كلِّ ذنبٍ وأتوبُ إليه.', src:'' },
+      { text:'اللهمَّ اجعلني من التَّوَّابين واجعلني من المُتطهِّرين،\nواغسِل خطاياي بالماء والثَّلج والبَرَد،\nونقِّني من الذُّنوب كما يُنقَّى الثَّوبُ الأبيضُ من الدَّنس.', src:'متفق عليه' },
     ]
   },
   {
@@ -325,9 +802,14 @@ const SECTIONS = [
       { text:'يا مُقلِّبَ القلوبِ ثبِّت قلبي على دينك،\nيا مُصرِّفَ القلوبِ صرِّف قلبي إلى طاعتك.', src:'صحيح الترمذي' },
       { text:'اللهمَّ آتِ نفسي تقواها وزكِّها أنت خيرُ من زكَّاها،\nأنت وليُّها ومولاها.', src:'صحيح مسلم' },
       { text:'اللهمَّ اجعل القرآنَ ربيعَ قلبي ونورَ صدري،\nوجلاءَ حزني وذهابَ همِّي وغمِّي.', src:'صحيح ابن حبَّان' },
+      { text:'اللهمَّ أرِنا الحقَّ حقًّا وارزقنا اتِّباعه،\nوأرِنا الباطلَ باطلًا وارزقنا اجتنابه.', src:'أثر صحيح' },
       { text:'اللهمَّ إنِّي أسألُك الثَّباتَ في الأمر والعزيمةَ على الرُّشد،\nوأسألُك موجباتِ رحمتك وعزائمَ مغفرتك،\nوالسَّلامةَ من كلِّ إثم، والفوزَ بالجنَّة والنَّجاةَ من النَّار.', src:'صحيح النَّسائي' },
       { text:'اللهمَّ لا تَكِلني إلى نفسي طرفةَ عين،\nوأصلِح لي شأني كلَّه، لا إله إلا أنت.', src:'صحيح أبو داود' },
       { text:'اللهمَّ إنِّي أسألُك العلمَ النَّافعَ والرِّزقَ الطَّيِّبَ والعملَ المُتقبَّل.', src:'صحيح ابن ماجه' },
+      { text:'اللهمَّ إنِّي أسألُك الهدى والتُّقى والعفافَ والغنى.', src:'صحيح مسلم' },
+      { text:'اللهمَّ إنِّي أعوذُ بك من علمٍ لا ينفع، ومن قلبٍ لا يخشع،\nومن نفسٍ لا تشبع، ومن دعوةٍ لا يُستجابُ لها.', src:'صحيح مسلم' },
+      { text:'اللهمَّ اجعلني ممَّن يخشاك في السِّرِّ والعلن،\nويقولُ الحقَّ في الرِّضا والغضب،\nويتوبُ إليك قبل أن يفوتَ الأوان.', src:'' },
+      { text:'اللهمَّ ارزُقني حُبَّك وحُبَّ من يُحبُّك،\nوحُبَّ العمل الذي يُقرِّبني إلى حُبِّك.', src:'صحيح الترمذي' },
     ]
   },
   {
@@ -339,6 +821,11 @@ const SECTIONS = [
       { text:'اللهمَّ إنِّي أعوذُ بك من شرِّ ما عملتُ ومن شرِّ ما لم أعمل،\nوأعوذُ بك من شرِّ نفسي ومن شرِّ كلِّ دابَّةٍ أنتَ آخذٌ بناصيتها.', src:'صحيح مسلم' },
       { text:'اللهمَّ إنِّي أعوذُ بك من العين والحسد والسِّحر وكلِّ شرٍّ،\nواحفظني من بين يديَّ ومن خلفي وعن يميني وعن شمالي ومن فوقي،\nوأعوذُ بعظمتك أن أُغتالَ من تحتي.', src:'صحيح أبو داود' },
       { text:'بسم الله الذي لا يضرُّ مع اسمه شيءٌ في الأرض ولا في السَّماء،\nوهو السَّميعُ العليم.', src:'صحيح أبو داود — ثلاثًا صباحًا ومساءً' },
+      { text:'حسبيَ اللهُ لا إله إلَّا هو عليه توكَّلتُ وهو ربُّ العرش العظيم.', src:'سورة التَّوبة: ١٢٩ — سبعًا صباحًا ومساءً' },
+      { text:'اللهمَّ إنِّي أعوذُ بكلماتِك التَّامَّاتِ من غضبِك وعقابِك،\nومن شرِّ عبادِك، ومن هَمَزاتِ الشَّياطين وأن يحضُرون.', src:'صحيح أبو داود' },
+      { text:'أعوذُ بكلمات الله التَّامَّات من شرِّ ما خلق.', src:'صحيح مسلم — ثلاثًا مساءً' },
+      { text:'اللهمَّ إنِّي أعوذُ بك من شرِّ السَّامَّة والهَامَّة،\nومن شرِّ كلِّ ذي شرٍّ لا يُؤمَن شرُّه إلَّا أنت.', src:'' },
+      { text:'اللهمَّ كُن لي وليًّا وناصرًا،\nواحفظني من كيدِ الكائدين وحسدِ الحاسدين.', src:'' },
     ]
   },
   {
@@ -350,6 +837,10 @@ const SECTIONS = [
       { text:'اللهمَّ إنِّي أسألُك رزقًا حلالًا طيِّبًا مباركًا واسعًا،\nتُوسِعُه علَيَّ من حيثُ شئتَ وكيف شئت، بغير مشقَّةٍ ولا تعب.', src:'' },
       { text:'اللهمَّ بارك لي في رزقي وعملي ووقتي وعُمري،\nواجعل لي بركةً في كلِّ ما أُقبل عليه،\nوارزُقني رزقًا يُغنيني ولا يُطغيني.', src:'' },
       { text:'اللهمَّ افتح لي أبوابَ رزقِك ورحمتِك وفضلِك،\nوأنزِل عليَّ بركاتٍ من السَّماء ومن الأرض.', src:'' },
+      { text:'اللهمَّ اقضِ عنِّي الدَّين وأغنِني من الفقر،\nووسِّع عليَّ في رزقي ولا تجعل رزقي على يد أحدٍ غيرك.', src:'' },
+      { text:'اللهمَّ إنِّي أسألُك من فضلِك العظيم،\nفإنَّه لا يملِكُه أحدٌ غيرك،\nوأسألُك أن ترزُقني من حيثُ لا أحتسب.', src:'' },
+      { text:'اللهمَّ يا غنيُّ يا حميد، يا مبدئُ يا معيد،\nيا رحيمُ يا ودود، أغنِني بحلالِك عن حرامِك،\nوبفضلِك عمَّن سواك.', src:'' },
+      { text:'اللهمَّ اجعل أوسعَ رزقِك عليَّ عند كِبَر سنِّي وانقطاعِ عُمري.', src:'صحيح ابن حبَّان' },
       { text:'ربَّنا آتِنا في الدُّنيا حسنةً وفي الآخرة حسنةً وقِنا عذابَ النَّار.', src:'سورة البقرة: ٢٠١' },
     ]
   },
@@ -361,6 +852,10 @@ const SECTIONS = [
       { text:'اللهمَّ استُر عوراتي وآمِن روعاتي،\nواحفظ عليَّ أمري ولا تُسلِّط عليَّ من لا يَرحمني.', src:'' },
       { text:'اللهمَّ إنَّك تعلمُ ما أنا فيه، فارحمني وأعِنِّي ويسِّر أمري،\nواجعل لي من كلِّ ضيقٍ فرجًا ومن كلِّ همٍّ مخرجًا،\nوارزُقني من حيثُ لا أحتسب.', src:'' },
       { text:'اللهمَّ إنِّي أسألُك تمامَ النِّعمة ودوامَ العافية وحُسنَ الخاتمة.', src:'' },
+      { text:'اللهمَّ ثبِّت لي رزقي، ولا تقطَعه عنِّي،\nوأدِم عليَّ سترَك وعافيتَك، ولا تفضَحني بين خلقِك.', src:'' },
+      { text:'اللهمَّ عافِني في بدني، اللهمَّ عافِني في سمعي، اللهمَّ عافِني في بصري،\nلا إله إلَّا أنت.', src:'صحيح أبو داود' },
+      { text:'اللهمَّ إنِّي أسألُك العافيةَ في الدُّنيا والآخرة لي ولأهلي ولأحبَّتي.', src:'' },
+      { text:'اللهمَّ أصلِح لي عملي وثبِّت لي مصدرَ رزقي،\nوكن لي وليًّا وحافظًا ولا تَكِلني إلى أحدٍ من خلقِك.', src:'' },
     ]
   },
   {
@@ -372,6 +867,10 @@ const SECTIONS = [
       { text:'اللهمَّ لا سهلَ إلَّا ما جعلتَه سهلًا،\nوأنت تجعلُ الحزنَ إذا شئتَ سهلًا.', src:'صحيح ابن حبَّان' },
       { text:'يا حيُّ يا قيُّومُ برحمتِك أستغيث،\nأصلِح لي شأني كلَّه ولا تَكِلني إلى نفسي طرفةَ عين.', src:'صحيح الحاكم' },
       { text:'حسبُنا اللهُ ونعم الوكيل.', src:'سورة آل عمران: ١٧٣' },
+      { text:'اللهمَّ يا ربَّ كلِّ شيءٍ ومليكَه،\nأنتَ أحقُّ من سُئل، وأنت أحقُّ من رُجِي،\nاكشف عنِّي كلَّ همٍّ وغمٍّ وكربٍ وضيق.', src:'' },
+      { text:'اللهمَّ فرِّج همِّي واكشِف غمِّي، وآتِني من حيثُ لا أحتسب،\nفإنَّ الفرجَ مع الكَرب وإنَّ مع العسر يُسرًا.', src:'' },
+      { text:'اللهمَّ إنِّي عبدُك ابنُ عبدِك ابنُ أمتِك، ناصيتي بيدِك،\nماضٍ فيَّ حُكمُك، عدلٌ فيَّ قضاؤك،\nأسألُك بكلِّ اسمٍ هو لك أن تجعلَ القرآنَ ربيعَ قلبي ونورَ صدري وجلاءَ حُزني وذهابَ همِّي.', src:'صحيح أحمد' },
+      { text:'اللهمَّ إنِّي أسألُك يا حيُّ يا قيُّومُ\nأن تُنزِلَ عليَّ رحمتَك ورحمة-ك تسَع كلَّ شيء.\nاللهمَّ إنِّي أعوذُ بك من الشِّدَّة والكربة.', src:'' },
     ]
   },
   {
@@ -385,6 +884,10 @@ const SECTIONS = [
       { text:'اللهمَّ اغفر لي وارحمني واهدِني وارزُقني وعافِني.', src:'جمَع فيها النَّبيُّ ﷺ خيرَ الدُّنيا والآخرة — صحيح مسلم' },
       { text:'اللهمَّ إنِّي أعوذُ برضاك من سَخَطِك وبمعافاتِك من عقوبتِك،\nوأعوذُ بك منك، لا أُحصي ثناءً عليك أنتَ كما أثنيتَ على نفسِك.', src:'من أعظم أدعية النَّبيِّ ﷺ — صحيح مسلم' },
       { text:'رضيتُ بالله ربًّا وبالإسلام دينًا وبمحمَّدٍ ﷺ نبيًّا ورسولًا.', src:'من قالها ثلاثًا صباحًا ومساءً كان حقًّا على الله أن يُرضيَه — صحيح الترمذي' },
+      { text:'لا تُؤاخذنا إن نسينا أو أخطأنا،\nربَّنا ولا تحمِل علينا إصرًا كما حملتَه على الذين من قبلِنا،\nربَّنا ولا تُحمِّلنا ما لا طاقةَ لنا به،\nواعفُ عنَّا واغفر لنا وارحمنا، أنتَ مولانا فانصُرنا على القوم الكافرين.', src:'سورة البقرة: ٢٨٦ — استجابها الله بنفسه' },
+      { text:'اللهمَّ إنِّي أسألُك موجباتِ رحمتِك وعزائمَ مغفرتِك،\nوالغنيمةَ من كلِّ بِرٍّ والسَّلامةَ من كلِّ إثم.', src:'صحيح الحاكم' },
+      { text:'سبحانَك اللهمَّ وبحمدِك، أشهدُ أن لا إله إلَّا أنت،\nأستغفرُك وأتوبُ إليك.', src:'كفَّارةُ المجلس — صحيح الترمذي وأبو داود' },
+      { text:'لا إله إلَّا الله، وحدَه لا شريكَ له، له المُلكُ وله الحمدُ،\nيُحيي ويُميتُ وهو حيٌّ لا يموت، بيدِه الخيرُ وهو على كلِّ شيءٍ قدير.', src:'صحيح مسلم — عدلُ عَتاقةِ عشرِ رقاب' },
     ]
   },
   {
@@ -394,6 +897,9 @@ const SECTIONS = [
       { text:'ربَّنا هَب لنا من أزواجِنا وذُرِّيَّاتِنا قرَّةَ أعيُنٍ واجعلنا للمتَّقين إمامًا.', src:'سورة الفرقان: ٧٤' },
       { text:'اللهمَّ ارزُقني زوجةً صالحةً تقيَّةً مؤمنةً تخشاك في السِّر والعلن،\nتكونُ سَكَنًا لقلبي ونورًا لبيتي وعونًا لي على ديني ودنياي وآخرتي،\nاللهمَّ اجعلها قرَّةَ عينٍ لي واجعلني قرَّةَ عينٍ لها،\nواجمعنا على طاعتِك واجعل بيتَنا بيتَ سكينةٍ ومودَّةٍ ورحمة.', src:'' },
       { text:'اللهمَّ ارزُقنا ذُرِّيَّةً صالحةً طيِّبةً تكونُ قرَّةَ أعيُنٍ لنا في الدُّنيا والآخرة،\nواجعلهم من مُقيمي الصَّلاة ومن عبادِك الصَّالحين.', src:'' },
+      { text:'ربِّ هَب لي من لدُنك ذُرِّيَّةً طيِّبةً إنَّك سميعُ الدُّعاء.', src:'سورة آل عمران: ٣٨' },
+      { text:'اللهمَّ اجعل أولادي أبرارًا أتقياءَ، نافعين غيرَ مضرِّين،\nاللهمَّ بارك لنا فيهم ولا تجعل لأحدٍ منَّا فيهم نصيبًا.', src:'' },
+      { text:'اللهمَّ ألِّف بين قلوبِنا وأصلِح ذاتَ بيننا، واجعل بيتَنا عامرًا بذكرِك وطاعتِك،\nواجعله ملجأً للسَّكينة والمحبَّة والرَّحمة.', src:'' },
     ]
   },
   {
@@ -402,6 +908,9 @@ const SECTIONS = [
     duas:[
       { text:'ربِّ اغفر لي ولوالديَّ وارحمهما كما ربَّياني صغيرًا.', src:'سورة الإسراء: ٢٤' },
       { text:'اللهمَّ ارحم والديَّ واغفر لهما وارضَ عنهما،\nوأدخِلهما جنَّةَ الفردوس الأعلى بغير حسابٍ ولا عذاب،\nوأكرِم نُزُلَهما ووسِّع مدخلَهما،\nواسقِهما من حوض النَّبيِّ ﷺ شربةً لا يَظمآن بعدها أبدًا،\nاللهمَّ ارفع درجتَهما في الجنَّة واجزِهما عنِّي خيرَ الجزاء.', src:'' },
+      { text:'اللهمَّ أعِنِّي على برِّ والديَّ حيَّين وميِّتَين،\nوألحِقني بهما في الفردوس الأعلى من غير سابقةِ عذاب.', src:'' },
+      { text:'ربِّ أوزِعني أن أشكرَ نعمتَك التي أنعمتَ عليَّ وعلى والديَّ،\nوأن أعملَ صالحًا تَرضاه، وأصلِح لي في ذُرِّيَّتي،\nإنِّي تُبتُ إليك وإنِّي من المسلمين.', src:'سورة الأحقاف: ١٥' },
+      { text:'اللهمَّ اجعل لي من كلِّ عملٍ صالحٍ أقومُ به نصيبًا في ميزانِ حسناتِ والديَّ.', src:'' },
     ]
   },
   {
@@ -412,6 +921,10 @@ const SECTIONS = [
       { text:'اللهمَّ احفظهم في أنفُسهم وأهليهم وأولادهم وأرزاقهم وأعمارهم،\nوبارك لهم فيما أعطيتَهم واجزِهم عنِّي خيرًا مما أعطَوني.', src:'' },
       { text:'اللهمَّ يسِّر أمورَهم وفرِّج همومَهم واكشِف عنهم كلَّ ضيقٍ وكربة،\nوأدخِلهم جنَّةَ الفردوس الأعلى برحمتِك يا أرحمَ الرَّاحمين.', src:'' },
       { text:'اللهمَّ ألِّف بين قلوبِنا وأصلِح ذاتَ بيننا واهدِنا سُبُلَ السَّلام،\nواجمعنا في الفردوس الأعلى مع النَّبيِّين والصِّدِّيقين والشُّهداء والصَّالحين.', src:'' },
+      { text:'اللهمَّ اجزِ كلَّ من أعانني ووقف بجانبي خيرَ الجزاء،\nوأعطِهم خيرًا ممَّا أعطَوني وبارك لهم فيما رزقتَهم.', src:'' },
+      { text:'اللهمَّ ربِط على قلوبِ أحبَّتي، واملأ صدورَهم باليقين والسَّكينة،\nوارزُقهم خيرَ الدُّنيا والآخرة.', src:'' },
+      { text:'اللهمَّ من أرادني أو أحبَّتي بسوءٍ فاشغَله في نفسِه،\nواردُد كيدَه في نحرِه، واجعل تدبيرَه تدميرًا عليه.', src:'' },
+      { text:'اللهمَّ بارك لإخواني وأخواتي في أعمارهم وأرزاقهم وأهليهم وذُرِّيَّاتهم،\nواجعلهم هداةً مهتدين.', src:'' },
     ]
   },
   {
@@ -421,6 +934,10 @@ const SECTIONS = [
       { text:'اللهمَّ ربَّ النَّاس أذهِب البأس، اشفِ أنت الشَّافي،\nلا شفاءَ إلَّا شفاؤك، شفاءً لا يُغادِر سَقَمًا.', src:'متفق عليه' },
       { text:'بسم الله أرقيك من كلِّ شيءٍ يُؤذيك،\nومن شرِّ كلِّ نفسٍ أو عينٍ حاسد، اللهُ يشفيك.', src:'صحيح مسلم' },
       { text:'اللهمَّ اشفِ مرضانا وعافِهم وعافِنا،\nوارزُقنا صحَّةً في الأبدان وسلامةً في الأديان.', src:'' },
+      { text:'لا بأسَ، طَهورٌ إن شاء الله.', src:'صحيح البخاري — يُقال للمريض' },
+      { text:'أسألُ اللهَ العظيمَ ربَّ العرش العظيم أن يشفيَك.', src:'صحيح أبو داود والترمذي — سبع مرات' },
+      { text:'اللهمَّ أذهِب عنه البأسَ، اشفِه أنت الشَّافي لا شفاءَ إلَّا شفاؤك،\nشفاءً لا يُغادِر سَقَمًا.', src:'متفق عليه' },
+      { text:'اللهمَّ اشفِ كلَّ مريضٍ، وارحم كلَّ ميِّتٍ من المسلمين،\nوفرِّج كربَ كلِّ مكروبٍ، وارحم ضعفَنا وقِلَّةَ حيلتِنا.', src:'' },
     ]
   },
   {
@@ -433,6 +950,11 @@ const SECTIONS = [
       { text:'اللهمَّ اختِم لي بالإيمان واختِم لي بالإسلام،\nواختِم لي بأعمالٍ صالحةٍ ترضاها عنِّي.', src:'' },
       { text:'اللهمَّ حاسِبني حسابًا يسيرًا وأعطني كتابي بيميني،\nوأدخِلني الجنَّةَ برحمتِك مع عبادِك الصَّالحين.', src:'' },
       { text:'اللهمَّ توفَّني مسلمًا وألحِقني بالصَّالحين ولا تُخزِني يومَ القيامة.', src:'سورة يوسف: ١٠١' },
+      { text:'اللهمَّ إنَّا نسألُك نعيمَ الجنَّة ولذَّةَ النَّظر إلى وجهِك الكريم.', src:'' },
+      { text:'اللهمَّ اجعل قبري روضةً من رياضِ الجنَّة،\nولا تجعله حُفرةً من حُفَر النَّار.', src:'صحيح أحمد' },
+      { text:'اللهمَّ بارِد قبري وأنِر لي فيه ووسِّعه عليَّ،\nواجعله روضةً من رياضِ الجنَّة لا حُفرةً من حُفَر النَّار.', src:'' },
+      { text:'اللهمَّ إنِّي أسألُك الجنَّةَ وأعوذُ بك من النَّار،\nوأسألُك أن تُهوِّن عليَّ سكراتِ الموت.', src:'' },
+      { text:'ربِّ اجعلني مُقيمَ الصَّلاة ومن ذُرِّيَّتي، ربَّنا وتقبَّل دُعاء.', src:'سورة إبراهيم: ٤٠' },
     ]
   },
   {
@@ -444,6 +966,10 @@ const SECTIONS = [
       { text:'اللهمَّ احفظنا في أنفُسِنا وأهلِينا وأموالِنا وديننا،\nواكفِنا شرَّ كلِّ ذي شرٍّ وحاسدٍ وعدو.', src:'' },
       { text:'اللهمَّ اجعل خيرَ عُمرنا آخرَه، وخيرَ عملِنا خواتيمَه،\nوخيرَ أيَّامنا يومَ نلقاك.', src:'صحيح الطَّبراني' },
       { text:'ربَّنا آتِنا في الدُّنيا حسنةً وفي الآخرة حسنةً وقِنا عذابَ النَّار،\nوأدخِلنا الجنَّةَ مع الأبرار يا عزيزُ يا غفَّار.', src:'سورة البقرة: ٢٠١' },
+      { text:'اللهمَّ اشفِ مرضانا، وفرِّج كُرَبَ مكروبِينا، واقضِ ديونَ مديونِينا،\nواهدِ ضالِّينا، وأعزَّ إسلامَنا، وانصُرنا على أعدائنا.', src:'' },
+      { text:'اللهمَّ ربَّنا آتِنا من لدُنك رحمةً وهيِّئ لنا من أمرِنا رشدًا.', src:'سورة الكهف: ١٠' },
+      { text:'سبحانَ ربِّك ربِّ العزَّة عمَّا يَصِفون، وسلامٌ على المُرسَلين،\nوالحمدُ لله ربِّ العالمين.', src:'سورة الصَّافَّات: ١٨٠–١٨٢' },
+      { text:'اللهمَّ صلِّ وسلِّم وبارك على سيِّدنا محمَّد وعلى آله وصحبه أجمعين،\nوالحمدُ لله ربِّ العالمين.', src:'' },
     ]
   },
   {
@@ -451,178 +977,475 @@ const SECTIONS = [
     title:'— الأذكارُ اليَّوميَّةُ مع العَدَّاد —',
     type:'tasbih',
     items:[
-      { text:'سبحانَ الله وبحمده', target:100, note:'تُحَطُّ الخطايا وإن كانت مثل زبد البحر', src:'متفق عليه' },
-      { text:'لا إله إلَّا اللهُ وحده لا شريكَ له\nله المُلكُ وله الحمد وهو على كلِّ شيءٍ قدير', target:100, note:'عِدلُ عَشرة رقاب وتُكتبُ مئةُ حسنة', src:'متفق عليه' },
-      { text:'سبحانَ الله', target:33, note:'بعد كل صلاة', src:'متفق عليه' },
-      { text:'الحمد لله', target:33, note:'بعد كل صلاة', src:'متفق عليه' },
-      { text:'الله أكبر', target:33, note:'بعد كل صلاة', src:'متفق عليه' },
-      { text:'أستغفرُ اللهَ وأتوبُ إليه', target:100, note:'١٠٠ مرَّة في اليوم', src:'صحيح البخاري' },
-      { text:'اللهمَّ صلِّ على محمَّد', target:10, note:'١٠ صباحًا و١٠ مساءً', src:'صحيح مسلم' },
-      { text:'حسبيَ اللهُ لا إله إلَّا هو\nعليه توكَّلتُ وهو ربُّ العرش العظيم', target:7, note:'٧ صباحًا و٧ مساءً', src:'سورة التَّوبة: ١٢٩' },
-      { text:'بسم الله الذي لا يضرُّ مع اسمه شيءٌ\nفي الأرض ولا في السَّماء', target:3, note:'٣ صباحًا و٣ مساءً', src:'صحيح أبو داود' },
-      { text:'لا حولَ ولا قوَّةَ إلَّا بالله العليِّ العظيم', target:100, note:'كنزٌ من كنوز الجنَّة', src:'متفق عليه' },
-      { text:'سبحانَ اللهِ العظيم وبحمده', target:1, note:'مرَّةً تُزرعُ نخلةٌ في الجنَّة', src:'صحيح الترمذي' },
-      { text:'أعوذُ بكلمات الله التَّامَّات\nمن شرِّ ما خلق', target:3, note:'٣ مرَّات مساءً', src:'صحيح مسلم' },
+      { text:'سبحانَ الله وبحمده', note:'تُحَطُّ الخطايا وإن كانت مثل زبد البحر', src:'متفق عليه' },
+      { text:'لا إله إلَّا اللهُ وحده لا شريكَ له\nله المُلكُ وله الحمد وهو على كلِّ شيءٍ قدير', note:'عِدلُ عَشرة رقاب وتُكتبُ مئةُ حسنة', src:'متفق عليه' },
+      { text:'سبحانَ الله', note:'تُسبَّح بعد كل صلاة وكمِّلها هنا ١٠٠', src:'متفق عليه' },
+      { text:'الحمد لله', note:'تُحمَد بعد كل صلاة وكمِّلها هنا ١٠٠', src:'متفق عليه' },
+      { text:'الله أكبر', note:'يُكبَّر بعد كل صلاة وكمِّلها هنا ١٠٠', src:'متفق عليه' },
+      { text:'أستغفرُ اللهَ وأتوبُ إليه', note:'١٠٠ مرَّة في اليوم', src:'صحيح البخاري' },
+      { text:'اللهمَّ صلِّ على محمَّد', note:'أكثِر من الصَّلاة على النَّبيِّ ﷺ', src:'صحيح مسلم' },
+      { text:'حسبيَ اللهُ لا إله إلَّا هو\nعليه توكَّلتُ وهو ربُّ العرش العظيم', note:'أصلها ٧ مرَّات — وزِدها هنا إلى ١٠٠', src:'سورة التَّوبة: ١٢٩' },
+      { text:'بسم الله الذي لا يضرُّ مع اسمه شيءٌ\nفي الأرض ولا في السَّماء', note:'أصلها ٣ مرَّات — وزِدها هنا إلى ١٠٠', src:'صحيح أبو داود' },
+      { text:'لا حولَ ولا قوَّةَ إلَّا بالله العليِّ العظيم', note:'كنزٌ من كنوز الجنَّة', src:'متفق عليه' },
+      { text:'سبحانَ اللهِ العظيم وبحمده', note:'كلُّ مرَّةٍ تُزرعُ نخلةٌ في الجنَّة', src:'صحيح الترمذي' },
+      { text:'أعوذُ بكلمات الله التَّامَّات\nمن شرِّ ما خلق', note:'أصلها ٣ مرَّات — وزِدها هنا إلى ١٠٠', src:'صحيح مسلم' },
+      { text:'لا إله إلَّا الله', note:'أفضلُ الذِّكر — كلمةُ التَّوحيد', src:'صحيح الترمذي' },
+      { text:'يا حيُّ يا قيُّوم برحمتِك أستغيث', note:'كان يُكثر منها النَّبيُّ ﷺ', src:'صحيح الترمذي' },
+      { text:'رضيتُ بالله ربًّا وبالإسلام دينًا\nوبمحمَّدٍ ﷺ نبيًّا ورسولًا', note:'حقٌّ على الله أن يُرضيَه', src:'صحيح الترمذي' },
+      { text:'اللهمَّ اغفر لي وارحمني واهدِني وارزُقني وعافِني', note:'جمَع فيها النَّبيُّ ﷺ خيرَ الدُّنيا والآخرة', src:'صحيح مسلم' },
     ]
   },
 ];
 
-// ── build tabs & sections ──────────────────────────────────────────
-const navEl  = document.getElementById('navTabs');
-const mainEl = document.getElementById('mainContent');
-const counters = {};
+// ══════════════════════════════════════════════════════════════════════════════
+// UI STATE MANAGEMENT
+// ══════════════════════════════════════════════════════════════════════════════
 
-SECTIONS.forEach((sec, si) => {
-  // tab
-  const btn = document.createElement('button');
-  btn.className = 'tab-btn' + (si===0?' active':'');
-  btn.textContent = sec.label;
-  btn.onclick = () => switchTab(sec.id);
-  navEl.appendChild(btn);
+const state = {
+  currentTab: SECTIONS[0].id,
+  counters: {},
+  theme: localStorage.getItem('dua-theme') || 'dark',
+  searchQuery: '',
+};
 
-  // section div
-  const div = document.createElement('div');
-  div.className = 'section' + (si===0?' active':'');
-  div.id = 'sec-' + sec.id;
+// Apply theme on load
+document.documentElement.getAttribute;
+if (state.theme === 'light') document.body.classList.add('light-mode');
 
-  const hdr = document.createElement('div');
-  hdr.className = 'sec-header';
-  hdr.textContent = sec.title;
-  div.appendChild(hdr);
+// ══════════════════════════════════════════════════════════════════════════════
+// INITIALIZATION
+// ══════════════════════════════════════════════════════════════════════════════
 
-  if (sec.type === 'tasbih') {
-    const grid = document.createElement('div');
-    grid.className = 'tasbih-grid';
-    sec.items.forEach((item, ii) => {
-      const key = sec.id + '-' + ii;
-      counters[key] = 0;
-      grid.appendChild(buildTasbihCard(item, key));
-    });
-    div.appendChild(grid);
-  } else {
-    sec.duas.forEach(d => {
-      const card = document.createElement('div');
-      card.className = 'dua-card';
-      const txt = document.createElement('div');
-      txt.className = 'dua-text';
-      txt.innerHTML = d.text.replace(/\n/g,'<br>');
-      card.appendChild(txt);
-      if (d.src) {
-        const src = document.createElement('div');
-        src.className = 'dua-source';
-        src.textContent = d.src;
-        card.appendChild(src);
-      }
-      div.appendChild(card);
-    });
+const mainSections = document.getElementById('mainSections');
+const navTabs = document.getElementById('navTabs');
+const searchResults = document.getElementById('searchResults');
+const searchInput = document.getElementById('searchInput');
+const themeToggle = document.getElementById('themeToggle');
+const backToTop = document.getElementById('backToTop');
+const searchClear = document.getElementById('searchClear');
+
+function toArabicNum(n) {
+  return String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+}
+
+function renderSections() {
+  mainSections.innerHTML = '';
+  SECTIONS.forEach((sec, si) => {
+    const section = document.createElement('div');
+    section.className = 'section' + (si === 0 ? ' active' : '');
+    section.id = 'sec-' + sec.id;
+
+    const header = document.createElement('div');
+    header.className = 'sec-header';
+    header.textContent = sec.title;
+    section.appendChild(header);
+
+    if (sec.type === 'tasbih') {
+      const grid = document.createElement('div');
+      grid.className = 'tasbih-grid';
+      sec.items.forEach((item, idx) => {
+        const key = sec.id + '-' + idx;
+        state.counters[key] = loadCounter(key);
+        grid.appendChild(buildTasbihCard(item, key, sec.label));
+      });
+      section.appendChild(grid);
+    } else {
+      sec.duas.forEach(dua => {
+        section.appendChild(buildDuaCard(dua, sec.label));
+      });
+    }
+
+    mainSections.appendChild(section);
+  });
+}
+
+function renderTabs() {
+  navTabs.innerHTML = '';
+  SECTIONS.forEach((sec, si) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (si === 0 ? ' active' : '');
+    btn.textContent = sec.label;
+    btn.onclick = () => switchTab(sec.id);
+    navTabs.appendChild(btn);
+  });
+}
+
+function buildDuaCard(dua, sectionLabel) {
+  const card = document.createElement('div');
+  card.className = 'dua-card';
+
+  const text = document.createElement('div');
+  text.className = 'dua-text';
+  text.innerHTML = dua.text.replace(/\n/g, '<br>');
+  card.appendChild(text);
+
+  if (dua.src) {
+    const src = document.createElement('div');
+    src.className = 'dua-source';
+    src.textContent = dua.src;
+    card.appendChild(src);
   }
-  mainEl.appendChild(div);
-});
 
-function buildTasbihCard(item, key) {
+  const actions = document.createElement('div');
+  actions.className = 'dua-actions';
+
+  const copyBtn = document.createElement('button');
+  copyBtn.className = 'dua-btn';
+  copyBtn.innerHTML = '📋 نسخ';
+  copyBtn.onclick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const fullText = dua.text + (dua.src ? `\n— ${dua.src} —` : '');
+    copyToClipboard(fullText, copyBtn);
+  };
+
+  const shareBtn = document.createElement('button');
+  shareBtn.className = 'dua-btn';
+  shareBtn.innerHTML = '📤 مشاركة';
+  shareBtn.onclick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const fullText = dua.text + (dua.src ? `\n— ${dua.src} —` : '');
+    shareText(fullText, shareBtn);
+  };
+
+  actions.appendChild(copyBtn);
+  actions.appendChild(shareBtn);
+  card.appendChild(actions);
+
+  return card;
+}
+
+function showCopyFeedback(btn, ok) {
+  const original = btn.dataset.originalLabel || btn.innerHTML;
+  btn.dataset.originalLabel = original;
+  if (ok) {
+    btn.classList.add('success');
+    btn.classList.remove('error');
+    btn.innerHTML = '✓ تم النَّسخ';
+  } else {
+    btn.classList.add('error');
+    btn.classList.remove('success');
+    btn.innerHTML = '⚠ انسخ يدويًا';
+  }
+  clearTimeout(btn._copyResetTimer);
+  btn._copyResetTimer = setTimeout(() => {
+    btn.classList.remove('success', 'error');
+    btn.innerHTML = original;
+  }, ok ? 1500 : 2500);
+}
+
+function copyToClipboard(text, btn) {
+  // المحاولة الأولى: الـ Clipboard API الحديث (يتطلب سياقًا آمنًا https/localhost)
+  if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+    navigator.clipboard.writeText(text)
+      .then(() => showCopyFeedback(btn, true))
+      .catch(() => fallbackCopy(text, btn));
+  } else {
+    fallbackCopy(text, btn);
+  }
+}
+
+function fallbackCopy(text, btn) {
+  const el = document.createElement('textarea');
+  el.value = text;
+  // إبقاء العنصر داخل منطقة الرؤية فعليًا (بعض المتصفحات على الموبايل ترفض select() على عناصر بعيدة تمامًا عن الشاشة)
+  el.style.position = 'fixed';
+  el.style.top = '0';
+  el.style.left = '0';
+  el.style.width = '2px';
+  el.style.height = '2px';
+  el.style.padding = '0';
+  el.style.border = 'none';
+  el.style.outline = 'none';
+  el.style.boxShadow = 'none';
+  el.style.background = 'transparent';
+  el.setAttribute('readonly', '');
+  document.body.appendChild(el);
+
+  let ok = false;
+  try {
+    el.focus();
+    el.select();
+    el.setSelectionRange(0, text.length); // ضروري على iOS Safari
+    ok = document.execCommand('copy');
+  } catch (err) {
+    ok = false;
+  }
+  document.body.removeChild(el);
+
+  if (ok) {
+    showCopyFeedback(btn, true);
+  } else {
+    // فشل النسخ التلقائي تمامًا: لا نسكت — نعرض النص للمستخدم لينسخه يدويًا
+    showCopyFeedback(btn, false);
+    promptManualCopy(text);
+  }
+}
+
+function promptManualCopy(text) {
+  // حل أخير: نافذة بسيطة بالنص جاهز للتحديد والنسخ يدويًا، تعمل في كل الحالات بدون أي صلاحيات
+  window.prompt('انسخ النَّص التالي يدويًا (تحديد + نسخ):', text);
+}
+
+function shareText(text, btn) {
+  if (navigator.share) {
+    navigator.share({
+      text: text,
+      title: 'ربنا يجعله خير'
+    }).catch(() => {});
+  } else {
+    copyToClipboard(text, btn);
+  }
+}
+
+function buildTasbihCard(item, key, sectionLabel) {
   const card = document.createElement('div');
   card.className = 'tasbih-card';
 
-  const lbl = document.createElement('div');
-  lbl.className = 'tasbih-label';
-  lbl.innerHTML = item.text.replace(/\n/g,'<br>');
-  card.appendChild(lbl);
+  const title = document.createElement('div');
+  title.className = 'tasbih-title';
+  title.innerHTML = item.text.replace(/\n/g, '<br>');
+  card.appendChild(title);
 
-  const sub = document.createElement('div');
-  sub.className = 'tasbih-sublabel';
-  sub.textContent = item.note + ' — ' + item.src;
-  card.appendChild(sub);
+  const note = document.createElement('div');
+  note.className = 'tasbih-note';
+  note.textContent = item.note + ' — ' + item.src;
+  card.appendChild(note);
 
-  const cw = document.createElement('div');
-  cw.className = 'counter-wrap';
+  const current = state.counters[key] || 0;
 
-  const num = document.createElement('div');
-  num.className = 'counter-num';
-  num.id = 'num-' + key;
-  num.textContent = '٠';
+  const container = document.createElement('div');
+  container.className = 'counter-container';
+
+  const display = document.createElement('div');
+  display.className = 'counter-display';
+  display.id = 'num-' + key;
+  display.textContent = toArabicNum(current);
 
   const btn = document.createElement('button');
-  btn.className = 'btn-count';
+  btn.className = 'count-btn';
   btn.innerHTML = '+';
-  btn.setAttribute('aria-label', 'عَدَّ');
-  btn.onclick = () => increment(key, item.target, num, bar, badge);
+  btn.onclick = () => increment(key, item, display, bar, badge);
 
-  cw.appendChild(num);
-  cw.appendChild(btn);
-  card.appendChild(cw);
+  container.appendChild(display);
+  container.appendChild(btn);
+  card.appendChild(container);
 
-  const foot = document.createElement('div');
-  foot.className = 'tasbih-footer';
+  const footer = document.createElement('div');
+  footer.className = 'progress-section';
 
-  const pbw = document.createElement('div');
-  pbw.className = 'progress-bar-wrap';
   const bar = document.createElement('div');
   bar.className = 'progress-bar';
-  bar.id = 'bar-' + key;
-  pbw.appendChild(bar);
 
-  const tgt = document.createElement('span');
-  tgt.className = 'target-label';
-  tgt.textContent = '/ ' + toArabicNum(item.target);
+  const fill = document.createElement('div');
+  fill.className = 'progress-fill';
+  fill.id = 'bar-' + key;
+  fill.style.width = Math.min(100, (current / 100) * 100) + '%';
+  bar.appendChild(fill);
+
+  const target = document.createElement('div');
+  target.className = 'progress-target';
+  target.textContent = '/ ١٠٠';
+
+  footer.appendChild(bar);
+  footer.appendChild(target);
+
+  const tasbihFooter = document.createElement('div');
+  tasbihFooter.className = 'tasbih-footer';
+
+  const resetBtn = document.createElement('button');
+  resetBtn.className = 'reset-btn';
+  resetBtn.textContent = 'إعادة';
+  resetBtn.onclick = () => reset(key, display, fill, badge);
 
   const badge = document.createElement('div');
   badge.className = 'complete-badge';
   badge.id = 'badge-' + key;
   badge.textContent = '✓ اكتمل';
+  if (current >= 100) badge.style.display = 'inline-block';
 
-  const rst = document.createElement('button');
-  rst.className = 'btn-reset';
-  rst.textContent = 'إعادة';
-  rst.onclick = () => reset(key, num, bar, badge);
+  tasbihFooter.appendChild(resetBtn);
+  tasbihFooter.appendChild(badge);
+  footer.appendChild(tasbihFooter);
+  card.appendChild(footer);
 
-  foot.appendChild(rst);
-  foot.appendChild(badge);
-  foot.appendChild(tgt);
-  foot.appendChild(pbw);
-  card.appendChild(foot);
   return card;
 }
 
-function toArabicNum(n) {
-  return n.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+function loadCounter(key) {
+  try {
+    return parseInt(localStorage.getItem('dua-counter-' + key)) || 0;
+  } catch (e) {
+    return 0;
+  }
 }
 
-function increment(key, target, numEl, barEl, badgeEl) {
-  counters[key]++;
-  numEl.textContent = toArabicNum(counters[key]);
-  numEl.classList.remove('pop');
-  void numEl.offsetWidth;
-  numEl.classList.add('pop');
-  setTimeout(()=>numEl.classList.remove('pop'),120);
+function saveCounter(key, value) {
+  try {
+    localStorage.setItem('dua-counter-' + key, value);
+  } catch (e) {}
+}
 
-  const pct = Math.min(100, (counters[key]/target)*100);
+let audioContext;
+function playBeep() {
+  try {
+    audioContext = audioContext || new (window.AudioContext || window.webkitAudioContext)();
+    const t = audioContext.currentTime;
+    [[880, 0], [1175, 0.16]].forEach(([freq, delay]) => {
+      const osc = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0, t + delay);
+      gain.gain.linearRampToValueAtTime(0.12, t + delay + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + delay + 0.25);
+      osc.connect(gain);
+      gain.connect(audioContext.destination);
+      osc.start(t + delay);
+      osc.stop(t + delay + 0.26);
+    });
+  } catch (e) {}
+}
+
+function increment(key, item, numEl, barEl, badgeEl) {
+  state.counters[key]++;
+  saveCounter(key, state.counters[key]);
+  numEl.textContent = toArabicNum(state.counters[key]);
+  numEl.classList.add('pop');
+  setTimeout(() => numEl.classList.remove('pop'), 200);
+
+  const pct = Math.min(100, (state.counters[key] / 100) * 100);
   barEl.style.width = pct + '%';
 
-  if (counters[key] >= target) {
+  if (state.counters[key] === 100) {
     badgeEl.style.display = 'inline-block';
-    // vibrate on mobile
-    if (navigator.vibrate) navigator.vibrate([30,20,30]);
+    if (navigator.vibrate) navigator.vibrate([30, 20, 30]);
+    playBeep();
   }
 }
 
 function reset(key, numEl, barEl, badgeEl) {
-  counters[key] = 0;
+  state.counters[key] = 0;
+  saveCounter(key, 0);
   numEl.textContent = '٠';
   barEl.style.width = '0%';
   badgeEl.style.display = 'none';
 }
 
 function switchTab(id) {
-  document.querySelectorAll('.tab-btn').forEach((b,i) => {
-    b.classList.toggle('active', SECTIONS[i].id === id);
+  state.currentTab = id;
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', SECTIONS[i].id === id);
   });
-  document.querySelectorAll('.section').forEach(s => {
-    s.classList.toggle('active', s.id === 'sec-'+id);
+  document.querySelectorAll('.section').forEach(sec => {
+    sec.classList.toggle('active', sec.id === 'sec-' + id);
   });
-  // scroll active tab into view
-  const idx = SECTIONS.findIndex(s=>s.id===id);
-  navEl.children[idx]?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  const idx = SECTIONS.findIndex(s => s.id === id);
+  navTabs.children[idx]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+function doSearch(query) {
+  query = query.trim();
+  if (!query) {
+    mainSections.style.display = '';
+    searchResults.classList.remove('active');
+    searchClear.style.display = 'none';
+    return;
+  }
+
+  searchClear.style.display = 'block';
+  mainSections.style.display = 'none';
+  searchResults.classList.add('active');
+  searchResults.innerHTML = '';
+
+  let matches = [];
+  const lowerQuery = query.toLowerCase();
+  SECTIONS.forEach(sec => {
+    if (sec.type === 'tasbih') {
+      sec.items.forEach(it => {
+        if (it.text.includes(query) || (it.src && it.src.includes(query))) {
+          matches.push({ text: it.text, src: it.src, label: sec.label, isTaskbih: true });
+        }
+      });
+    } else {
+      sec.duas.forEach(d => {
+        if (d.text.includes(query) || (d.src && d.src.includes(query))) {
+          matches.push({ text: d.text, src: d.src, label: sec.label });
+        }
+      });
+    }
+  });
+
+  const meta = document.createElement('div');
+  meta.className = 'search-meta';
+  meta.textContent = matches.length ? toArabicNum(matches.length) + ' نتيجة لـ "' + query + '"' : '';
+  searchResults.appendChild(meta);
+
+  if (!matches.length) {
+    const empty = document.createElement('div');
+    empty.className = 'search-empty';
+    empty.textContent = 'لا توجد نتائج لـ "' + query + '"';
+    searchResults.appendChild(empty);
+    return;
+  }
+
+  matches.forEach(m => {
+    const label = document.createElement('div');
+    label.className = 'result-label';
+    label.textContent = '◆ ' + m.label;
+    searchResults.appendChild(label);
+
+    const card = document.createElement('div');
+    card.className = 'dua-card';
+
+    const text = document.createElement('div');
+    text.className = 'dua-text';
+    const highlighted = m.text.replace(new RegExp(query, 'gi'), '<mark>$&</mark>');
+    text.innerHTML = highlighted.replace(/\n/g, '<br>');
+    card.appendChild(text);
+
+    if (m.src) {
+      const src = document.createElement('div');
+      src.className = 'dua-source';
+      src.textContent = m.src;
+      card.appendChild(src);
+    }
+
+    searchResults.appendChild(card);
+  });
+}
+
+// Event listeners
+themeToggle.addEventListener('click', () => {
+  const isLight = document.body.classList.contains('light-mode');
+  document.body.classList.toggle('light-mode');
+  const newTheme = isLight ? 'dark' : 'light';
+  themeToggle.textContent = newTheme === 'light' ? '☀️' : '🌙';
+  try { localStorage.setItem('dua-theme', newTheme); } catch (e) {}
+});
+
+searchInput.addEventListener('input', () => doSearch(searchInput.value));
+searchClear.addEventListener('click', () => {
+  searchInput.value = '';
+  doSearch('');
+  searchInput.focus();
+});
+
+window.addEventListener('scroll', () => {
+  backToTop.classList.toggle('show', window.scrollY > 400);
+});
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Initialize
+renderTabs();
+renderSections();
+themeToggle.textContent = state.theme === 'light' ? '☀️' : '🌙';
 </script>
+
 </body>
 </html>
