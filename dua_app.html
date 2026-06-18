@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دعاء شامل كامل</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #0d1f15;
+    --bg2:      #122019;
+    --card:     #172a1e;
+    --card2:    #1c3224;
+    --border:   #2d5a3d;
+    --gold:     #c9a84c;
+    --gold2:    #e8c97a;
+    --gold3:    #f7e4a8;
+    --green:    #3a9c6a;
+    --green2:   #52c98d;
+    --text:     #eef5ec;
+    --text2:    #b5d4bc;
+    --src:      #c9a84c99;
+    --radius:   16px;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Naskh Arabic', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── ambient glow ── */
+  body::before {
+    content:'';
+    position:fixed; top:-200px; left:50%;
+    transform:translateX(-50%);
+    width:700px; height:500px;
+    background: radial-gradient(ellipse, #1e5c3a44 0%, transparent 70%);
+    pointer-events:none; z-index:0;
+  }
+
+  /* ── header ── */
+  header {
+    text-align:center;
+    padding: 48px 20px 32px;
+    position:relative; z-index:1;
+  }
+  .basmala {
+    font-family:'Noto Kufi Arabic', serif;
+    font-size: clamp(26px, 6vw, 42px);
+    color: var(--gold2);
+    letter-spacing:.02em;
+    margin-bottom:16px;
+    text-shadow: 0 0 40px #c9a84c55;
+  }
+  .main-title {
+    font-family:'Noto Kufi Arabic', serif;
+    font-size: clamp(20px, 4.5vw, 32px);
+    color: var(--text);
+    margin-bottom:8px;
+  }
+  .sub-title {
+    font-size: 14px;
+    color: var(--text2);
+    margin-bottom:28px;
+  }
+  .ornament {
+    display:flex; align-items:center; justify-content:center;
+    gap:12px; margin:0 auto 8px;
+    max-width:420px;
+  }
+  .ornament-line { flex:1; height:1px; background:linear-gradient(to left,transparent,var(--gold),transparent); }
+  .ornament-diamond {
+    width:10px; height:10px;
+    background:var(--gold); transform:rotate(45deg);
+    box-shadow: 0 0 10px var(--gold);
+  }
+
+  /* ── nav tabs ── */
+  .nav-wrap {
+    position:sticky; top:0; z-index:100;
+    background: linear-gradient(to bottom, var(--bg) 80%, transparent);
+    padding: 12px 0 8px;
+  }
+  .nav-tabs {
+    display:flex; gap:8px; overflow-x:auto; padding:0 16px;
+    scrollbar-width:none;
+    justify-content: flex-start;
+  }
+  .nav-tabs::-webkit-scrollbar { display:none; }
+  .tab-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    font-family:'Noto Naskh Arabic', serif;
+    font-size:13px;
+    padding:7px 16px;
+    border-radius:50px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:.2s;
+    flex-shrink:0;
+  }
+  .tab-btn:hover { border-color:var(--gold); color:var(--gold3); }
+  .tab-btn.active {
+    background:linear-gradient(135deg,#1e5c3a,#0f3321);
+    border-color:var(--gold);
+    color:var(--gold2);
+    box-shadow: 0 0 16px #c9a84c33;
+  }
+
+  /* ── sections ── */
+  .section { display:none; padding:16px; max-width:780px; margin:0 auto; }
+  .section.active { display:block; }
+
+  /* ── section header ── */
+  .sec-header {
+    text-align:center;
+    padding:14px 20px;
+    background:linear-gradient(135deg,#1a4d2e,#0f2d1a);
+    border:1px solid var(--gold);
+    border-radius:var(--radius);
+    margin-bottom:20px;
+    font-family:'Noto Kufi Arabic', serif;
+    font-size: clamp(15px, 3vw, 19px);
+    color: var(--gold3);
+    box-shadow: 0 0 24px #c9a84c22;
+  }
+
+  /* ── dua card ── */
+  .dua-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 24px 16px;
+    margin-bottom:16px;
+    transition: border-color .2s, box-shadow .2s;
+    position:relative;
+  }
+  .dua-card:hover { border-color:#3d7a54; box-shadow: 0 4px 24px #00000044; }
+  .dua-text {
+    font-size: clamp(15px, 2.8vw, 18px);
+    line-height: 2.1;
+    color: var(--text);
+    margin-bottom:10px;
+    text-align:right;
+  }
+  .dua-source {
+    font-size:12px;
+    color: var(--gold);
+    text-align:center;
+    opacity:.8;
+    padding-top:8px;
+    border-top:1px solid #2d5a3d55;
+  }
+
+  /* ── TASBIH SECTION ── */
+  .tasbih-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap:16px;
+  }
+  .tasbih-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:20px;
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+    transition:.2s;
+  }
+  .tasbih-card:hover { border-color:var(--gold); }
+  .tasbih-label {
+    font-family:'Noto Kufi Arabic', serif;
+    font-size: clamp(15px,3vw,19px);
+    color:var(--gold3);
+    text-align:center;
+    line-height:1.8;
+  }
+  .tasbih-sublabel {
+    font-size:12px; color:var(--text2); text-align:center;
+    margin-top:-8px;
+  }
+  .counter-wrap {
+    display:flex; align-items:center; gap:16px;
+  }
+  .counter-num {
+    font-family:'Noto Kufi Arabic',serif;
+    font-size: clamp(40px,9vw,64px);
+    color:var(--gold2);
+    min-width:80px;
+    text-align:center;
+    text-shadow:0 0 30px #c9a84c66;
+    transition: transform .1s, color .1s;
+    line-height:1;
+  }
+  .counter-num.pop {
+    transform:scale(1.15);
+    color:var(--gold3);
+  }
+  .btn-count {
+    width:62px; height:62px;
+    background:linear-gradient(135deg,#1e5c3a,#0f3321);
+    border:2px solid var(--gold);
+    border-radius:50%;
+    color:var(--gold2);
+    font-size:28px;
+    cursor:pointer;
+    transition:.15s;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 0 16px #c9a84c33;
+    flex-shrink:0;
+    user-select:none;
+  }
+  .btn-count:hover { background:linear-gradient(135deg,#255e3d,#1a4028); box-shadow:0 0 24px #c9a84c55; }
+  .btn-count:active { transform:scale(.93); }
+  .tasbih-footer {
+    display:flex; align-items:center; gap:8px; width:100%;
+    justify-content:space-between;
+  }
+  .progress-bar-wrap {
+    flex:1; height:6px;
+    background:#1c3224; border-radius:10px; overflow:hidden;
+  }
+  .progress-bar {
+    height:100%; background:linear-gradient(to left,var(--gold),var(--green2));
+    border-radius:10px; transition:width .3s;
+    width:0%;
+  }
+  .btn-reset {
+    background:none; border:1px solid #2d5a3d;
+    color:var(--text2); font-family:'Noto Naskh Arabic',serif;
+    font-size:12px; padding:4px 12px; border-radius:50px; cursor:pointer;
+    transition:.2s; flex-shrink:0;
+  }
+  .btn-reset:hover { border-color:var(--gold); color:var(--gold); }
+  .target-label {
+    font-size:11px; color:var(--text2);
+  }
+  .complete-badge {
+    display:none;
+    background:linear-gradient(135deg,#1e5c3a,#0f3321);
+    border:1px solid var(--gold);
+    border-radius:50px;
+    padding:4px 14px;
+    font-size:12px; color:var(--gold2);
+    animation:fadeIn .3s;
+  }
+  @keyframes fadeIn { from{opacity:0;transform:scale(.9)} to{opacity:1;transform:scale(1)} }
+
+  /* ── responsive ── */
+  @media(max-width:500px){
+    .tasbih-grid { grid-template-columns:1fr; }
+    header { padding:32px 16px 20px; }
+  }
+
+  /* ── scrollbar ── */
+  ::-webkit-scrollbar { width:6px; }
+  ::-webkit-scrollbar-track { background:#0d1f15; }
+  ::-webkit-scrollbar-thumb { background:#2d5a3d; border-radius:4px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="basmala">﷽</div>
+  <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
+  <h1 class="main-title">دعاءٌ شاملٌ كامل</h1>
+  <p class="sub-title">في الدُّنيا والآخرة — للمسلم في كلِّ حال</p>
+  <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
+</header>
+
+<div class="nav-wrap">
+  <div class="nav-tabs" id="navTabs"></div>
+</div>
+
+<main id="mainContent"></main>
+
+<script>
+const SECTIONS = [
+  {
+    id:'hamd', label:'الحمد والثناء',
+    title:'— الحمدُ والثَّناءُ على الله تعالى —',
+    duas:[
+      { text:'اللهمَّ لك الحمدُ كلُّه، ولك الشُّكرُ كلُّه، ولك المُلكُ كلُّه،\nوبيدك الخيرُ كلُّه، وإليك يَرجعُ الأمرُ كلُّه،\nأنت الأوَّل فلا شيءَ قبلك، والآخرُ فلا شيءَ بعدك،\nوالظَّاهرُ فلا شيءَ فوقك، والباطنُ فلا شيءَ دونك.', src:'صحيح مسلم' },
+      { text:'الحمدُ لله ربِّ العالمين حمدًا كثيرًا طيِّبًا مباركًا فيه،\nكما يُحبُّ ربُّنا ويَرضى، وكما ينبغي لجلال وجهه وعظيم سلطانه.', src:'' },
+      { text:'سبحانك اللهمَّ وبحمدك، وتباركَ اسمُك، وتعالى جَدُّك، ولا إله غيرك.', src:'' },
+      { text:'اللهمَّ لك الحمدُ ملءَ السَّماوات وملءَ الأرض،\nوملءَ ما شئتَ من شيءٍ بعد،\nلا مانعَ لما أعطيت ولا مُعطيَ لما منعت،\nولا ينفعُ ذا الجَدِّ منك الجَدُّ.', src:'متفق عليه' },
+    ]
+  },
+  {
+    id:'salah', label:'الصلاة على النبي',
+    title:'— الصَّلاةُ والسَّلامُ على النَّبيِّ ﷺ —',
+    duas:[
+      { text:'اللهمَّ صلِّ على محمَّد وعلى آل محمَّد،\nكما صلَّيتَ على إبراهيم وعلى آل إبراهيم إنَّك حميدٌ مجيد،\nاللهمَّ بارك على محمَّد وعلى آل محمَّد،\nكما باركتَ على إبراهيم وعلى آل إبراهيم إنَّك حميدٌ مجيد.', src:'متفق عليه' },
+      { text:'اللهمَّ صلِّ وسلِّم وبارك على سيِّدنا محمَّد النَّبيِّ الأمِّيِّ الكريم،\nوعلى آله وصحبه أجمعين، ومن تبعهم بإحسانٍ إلى يوم الدِّين.', src:'' },
+    ]
+  },
+  {
+    id:'istighfar', label:'الاستغفار والتوبة',
+    title:'— الاستغفارُ والتَّوبةُ إلى الله —',
+    duas:[
+      { text:'أستغفرُ اللهَ العظيمَ الذي لا إله إلا هو الحيُّ القيُّومُ وأتوبُ إليه.', src:'صحيح الترمذي — سيِّد الاستغفار' },
+      { text:'اللهمَّ اغفر لي ذنوبي كلَّها، دقَّها وجلَّها، أوَّلها وآخرها،\nما علمتُ منها وما لم أعلم، وما أسررتُ وما أعلنت،\nوما أسرفتُ في أمري، أنت المُقدِّم وأنت المُؤخِّر وأنت على كلِّ شيءٍ قدير.', src:'صحيح مسلم' },
+      { text:'اللهمَّ إنِّي ظلمتُ نفسي ظُلمًا كثيرًا ولا يغفرُ الذُّنوبَ إلَّا أنت،\nفاغفر لي مغفرةً من عندك وارحمني إنَّك أنت الغفورُ الرَّحيم.', src:'متفق عليه' },
+      { text:'اللهمَّ إنَّك عفوٌّ كريمٌ تُحبُّ العفوَ فاعفُ عنِّي.', src:'صحيح الترمذي وابن ماجه' },
+      { text:'ربِّ اغفر لي وتُب عليَّ إنَّك أنت التَّوَّابُ الرَّحيم.', src:'صحيح البخاري' },
+    ]
+  },
+  {
+    id:'qunoot', label:'دعاء القنوت',
+    title:'— دعاءُ القُنوت —',
+    duas:[
+      { text:'اللهمَّ اهدِني فيمَن هديت، وعافِني فيمَن عافيت،\nوتولَّني فيمَن توَلَّيت، وبارك لي فيما أعطيت،\nوقِني شرَّ ما قضيت، فإنَّك تقضي ولا يُقضى عليك،\nوإنَّه لا يَذلُّ من واليت، ولا يَعزُّ من عاديت،\nتباركتَ ربَّنا وتعاليت، نستغفرُك ونتوبُ إليك.', src:'صحيح الترمذي' },
+    ]
+  },
+  {
+    id:'thabat', label:'الثبات والهداية',
+    title:'— ثباتُ القلبِ والهدايةُ وصلاحُ النَّفس —',
+    duas:[
+      { text:'ربَّنا لا تُزغ قلوبَنا بعدَ إذ هديتَنا،\nوهَب لنا مِن لدُنكَ رحمةً إنَّك أنت الوهَّاب.', src:'سورة آل عمران: ٨' },
+      { text:'يا مُقلِّبَ القلوبِ ثبِّت قلبي على دينك،\nيا مُصرِّفَ القلوبِ صرِّف قلبي إلى طاعتك.', src:'صحيح الترمذي' },
+      { text:'اللهمَّ آتِ نفسي تقواها وزكِّها أنت خيرُ من زكَّاها،\nأنت وليُّها ومولاها.', src:'صحيح مسلم' },
+      { text:'اللهمَّ اجعل القرآنَ ربيعَ قلبي ونورَ صدري،\nوجلاءَ حزني وذهابَ همِّي وغمِّي.', src:'صحيح ابن حبَّان' },
+      { text:'اللهمَّ إنِّي أسألُك الثَّباتَ في الأمر والعزيمةَ على الرُّشد،\nوأسألُك موجباتِ رحمتك وعزائمَ مغفرتك،\nوالسَّلامةَ من كلِّ إثم، والفوزَ بالجنَّة والنَّجاةَ من النَّار.', src:'صحيح النَّسائي' },
+      { text:'اللهمَّ لا تَكِلني إلى نفسي طرفةَ عين،\nوأصلِح لي شأني كلَّه، لا إله إلا أنت.', src:'صحيح أبو داود' },
+      { text:'اللهمَّ إنِّي أسألُك العلمَ النَّافعَ والرِّزقَ الطَّيِّبَ والعملَ المُتقبَّل.', src:'صحيح ابن ماجه' },
+    ]
+  },
+  {
+    id:'himaya', label:'الحماية والشرور',
+    title:'— الحمايةُ من الشُّرور والحسدِ والسِّحر —',
+    duas:[
+      { text:'اللهمَّ إنِّي أعوذُ بك من الهمِّ والحزن،\nوالعجز والكسل، والبُخل والجُبن،\nوضَلَع الدَّين وغَلَبة الرِّجال.', src:'صحيح البخاري' },
+      { text:'اللهمَّ إنِّي أعوذُ بك من زوال نعمتك،\nوتحوُّل عافيتك، وفجاءة نقمتك، وجميع سَخَطك.', src:'صحيح مسلم' },
+      { text:'اللهمَّ إنِّي أعوذُ بك من شرِّ ما عملتُ ومن شرِّ ما لم أعمل،\nوأعوذُ بك من شرِّ نفسي ومن شرِّ كلِّ دابَّةٍ أنتَ آخذٌ بناصيتها.', src:'صحيح مسلم' },
+      { text:'اللهمَّ إنِّي أعوذُ بك من العين والحسد والسِّحر وكلِّ شرٍّ،\nواحفظني من بين يديَّ ومن خلفي وعن يميني وعن شمالي ومن فوقي،\nوأعوذُ بعظمتك أن أُغتالَ من تحتي.', src:'صحيح أبو داود' },
+      { text:'بسم الله الذي لا يضرُّ مع اسمه شيءٌ في الأرض ولا في السَّماء،\nوهو السَّميعُ العليم.', src:'صحيح أبو داود — ثلاثًا صباحًا ومساءً' },
+    ]
+  },
+  {
+    id:'rizq', label:'الرزق والبركة',
+    title:'— الرِّزقُ الحلالُ والبركةُ والغنى —',
+    duas:[
+      { text:'ربِّ إنِّي لمَا أنزلتَ إليَّ من خيرٍ فقير.', src:'سورة القصص: ٢٤' },
+      { text:'اللهمَّ اكفِني بحلالِك عن حرامِك وأغنِني بفضلِك عمَّن سواك.', src:'صحيح الترمذي' },
+      { text:'اللهمَّ إنِّي أسألُك رزقًا حلالًا طيِّبًا مباركًا واسعًا،\nتُوسِعُه علَيَّ من حيثُ شئتَ وكيف شئت، بغير مشقَّةٍ ولا تعب.', src:'' },
+      { text:'اللهمَّ بارك لي في رزقي وعملي ووقتي وعُمري،\nواجعل لي بركةً في كلِّ ما أُقبل عليه،\nوارزُقني رزقًا يُغنيني ولا يُطغيني.', src:'' },
+      { text:'اللهمَّ افتح لي أبوابَ رزقِك ورحمتِك وفضلِك،\nوأنزِل عليَّ بركاتٍ من السَّماء ومن الأرض.', src:'' },
+      { text:'ربَّنا آتِنا في الدُّنيا حسنةً وفي الآخرة حسنةً وقِنا عذابَ النَّار.', src:'سورة البقرة: ٢٠١' },
+    ]
+  },
+  {
+    id:'afia', label:'العافية والستر',
+    title:'— العافيةُ والصِّحَّةُ والسَّترُ والحِفظ —',
+    duas:[
+      { text:'اللهمَّ إنِّي أسألُك العفوَ والعافيةَ في الدُّنيا والآخرة.\nاللهمَّ احفظني بالإسلام قائمًا وقاعدًا وراقدًا،\nولا تُشمِت بي عدوًّا ولا حاسدًا.', src:'صحيح ابن ماجه' },
+      { text:'اللهمَّ استُر عوراتي وآمِن روعاتي،\nواحفظ عليَّ أمري ولا تُسلِّط عليَّ من لا يَرحمني.', src:'' },
+      { text:'اللهمَّ إنَّك تعلمُ ما أنا فيه، فارحمني وأعِنِّي ويسِّر أمري،\nواجعل لي من كلِّ ضيقٍ فرجًا ومن كلِّ همٍّ مخرجًا،\nوارزُقني من حيثُ لا أحتسب.', src:'' },
+      { text:'اللهمَّ إنِّي أسألُك تمامَ النِّعمة ودوامَ العافية وحُسنَ الخاتمة.', src:'' },
+    ]
+  },
+  {
+    id:'faraj', label:'الفرج وكشف الكرب',
+    title:'— الفرجُ وكشفُ الكَرب —',
+    duas:[
+      { text:'لا إله إلَّا اللهُ العظيمُ الحليم،\nلا إله إلَّا اللهُ ربُّ العرشِ العظيم،\nلا إله إلَّا اللهُ ربُّ السَّماواتِ وربُّ الأرضِ وربُّ العرشِ الكريم.', src:'متفق عليه — يُقال عند الكرب' },
+      { text:'لا إله إلَّا أنتَ سبحانَك إنِّي كنتُ من الظَّالمين.', src:'سورة الأنبياء: ٨٧ — دعاءُ ذي النُّون' },
+      { text:'اللهمَّ لا سهلَ إلَّا ما جعلتَه سهلًا،\nوأنت تجعلُ الحزنَ إذا شئتَ سهلًا.', src:'صحيح ابن حبَّان' },
+      { text:'يا حيُّ يا قيُّومُ برحمتِك أستغيث،\nأصلِح لي شأني كلَّه ولا تَكِلني إلى نفسي طرفةَ عين.', src:'صحيح الحاكم' },
+      { text:'حسبُنا اللهُ ونعم الوكيل.', src:'سورة آل عمران: ١٧٣' },
+    ]
+  },
+  {
+    id:'mustajab', label:'أدعية مستجابة',
+    title:'— أدعيةٌ مستجابةٌ بإذن الله —',
+    duas:[
+      { text:'اللهمَّ إنِّي أسألُك بأنَّ لكَ الحمد،\nلا إله إلَّا أنتَ وحدَك لا شريكَ لك، المنَّان،\nبديعُ السَّماواتِ والأرض، يا ذا الجلال والإكرام،\nيا حيُّ يا قيُّوم، أسألُك أن تغفرَ لي وترحمَني\nوتُدخِلَني الجنَّةَ وتُنجِّيَني من النَّار.', src:'الاسمُ الأعظم — صحيح أبو داود والنَّسائي' },
+      { text:'اللهمَّ إنِّي أسألُك يا اللهُ الأحدُ الصَّمد،\nالذي لم يَلِد ولم يُولَد ولم يكُن له كُفوًا أحد،\nأن تغفرَ لي ذنوبي إنَّك أنت الغفورُ الرَّحيم.', src:'الاسمُ الأعظم — صحيح الترمذي وابن ماجه' },
+      { text:'لا إله إلَّا أنتَ سبحانَك إنِّي كنتُ من الظَّالمين.', src:'لم يَدعُ به مسلمٌ إلَّا استُجيب له — صحيح الترمذي' },
+      { text:'يا حيُّ يا قيُّومُ برحمتِك أستغيث،\nأصلِح لي شأني كلَّه ولا تَكِلني إلى نفسي طرفةَ عين.', src:'صحيح الحاكم' },
+      { text:'اللهمَّ اغفر لي وارحمني واهدِني وارزُقني وعافِني.', src:'جمَع فيها النَّبيُّ ﷺ خيرَ الدُّنيا والآخرة — صحيح مسلم' },
+      { text:'اللهمَّ إنِّي أعوذُ برضاك من سَخَطِك وبمعافاتِك من عقوبتِك،\nوأعوذُ بك منك، لا أُحصي ثناءً عليك أنتَ كما أثنيتَ على نفسِك.', src:'من أعظم أدعية النَّبيِّ ﷺ — صحيح مسلم' },
+      { text:'رضيتُ بالله ربًّا وبالإسلام دينًا وبمحمَّدٍ ﷺ نبيًّا ورسولًا.', src:'من قالها ثلاثًا صباحًا ومساءً كان حقًّا على الله أن يُرضيَه — صحيح الترمذي' },
+    ]
+  },
+  {
+    id:'zawj', label:'الزوجة والذرية',
+    title:'— الزَّوجةُ الصَّالحةُ والذُّرِّيَّةُ الطَّيِّبة —',
+    duas:[
+      { text:'ربَّنا هَب لنا من أزواجِنا وذُرِّيَّاتِنا قرَّةَ أعيُنٍ واجعلنا للمتَّقين إمامًا.', src:'سورة الفرقان: ٧٤' },
+      { text:'اللهمَّ ارزُقني زوجةً صالحةً تقيَّةً مؤمنةً تخشاك في السِّر والعلن،\nتكونُ سَكَنًا لقلبي ونورًا لبيتي وعونًا لي على ديني ودنياي وآخرتي،\nاللهمَّ اجعلها قرَّةَ عينٍ لي واجعلني قرَّةَ عينٍ لها،\nواجمعنا على طاعتِك واجعل بيتَنا بيتَ سكينةٍ ومودَّةٍ ورحمة.', src:'' },
+      { text:'اللهمَّ ارزُقنا ذُرِّيَّةً صالحةً طيِّبةً تكونُ قرَّةَ أعيُنٍ لنا في الدُّنيا والآخرة،\nواجعلهم من مُقيمي الصَّلاة ومن عبادِك الصَّالحين.', src:'' },
+    ]
+  },
+  {
+    id:'walidan', label:'الوالدان',
+    title:'— دعاءٌ للوالدَين الكِرام —',
+    duas:[
+      { text:'ربِّ اغفر لي ولوالديَّ وارحمهما كما ربَّياني صغيرًا.', src:'سورة الإسراء: ٢٤' },
+      { text:'اللهمَّ ارحم والديَّ واغفر لهما وارضَ عنهما،\nوأدخِلهما جنَّةَ الفردوس الأعلى بغير حسابٍ ولا عذاب،\nوأكرِم نُزُلَهما ووسِّع مدخلَهما،\nواسقِهما من حوض النَّبيِّ ﷺ شربةً لا يَظمآن بعدها أبدًا،\nاللهمَّ ارفع درجتَهما في الجنَّة واجزِهما عنِّي خيرَ الجزاء.', src:'' },
+    ]
+  },
+  {
+    id:'ahbab', label:'الإخوة والأحبة',
+    title:'— دعاءٌ للإخوةِ والأخواتِ والأحبَّة والأصدقاء —',
+    duas:[
+      { text:'اللهمَّ ارحم إخوتي وأخواتي وأحبَّتي وأصدقائي وكلَّ من أحسن إليَّ،\nواغفر لهم وارضَ عنهم وأدخلهم في عبادِك الصَّالحين.', src:'' },
+      { text:'اللهمَّ احفظهم في أنفُسهم وأهليهم وأولادهم وأرزاقهم وأعمارهم،\nوبارك لهم فيما أعطيتَهم واجزِهم عنِّي خيرًا مما أعطَوني.', src:'' },
+      { text:'اللهمَّ يسِّر أمورَهم وفرِّج همومَهم واكشِف عنهم كلَّ ضيقٍ وكربة،\nوأدخِلهم جنَّةَ الفردوس الأعلى برحمتِك يا أرحمَ الرَّاحمين.', src:'' },
+      { text:'اللهمَّ ألِّف بين قلوبِنا وأصلِح ذاتَ بيننا واهدِنا سُبُلَ السَّلام،\nواجمعنا في الفردوس الأعلى مع النَّبيِّين والصِّدِّيقين والشُّهداء والصَّالحين.', src:'' },
+    ]
+  },
+  {
+    id:'marda', label:'دعاء للمرضى',
+    title:'— دعاءٌ للمرضى وكشفِ البلاء —',
+    duas:[
+      { text:'اللهمَّ ربَّ النَّاس أذهِب البأس، اشفِ أنت الشَّافي،\nلا شفاءَ إلَّا شفاؤك، شفاءً لا يُغادِر سَقَمًا.', src:'متفق عليه' },
+      { text:'بسم الله أرقيك من كلِّ شيءٍ يُؤذيك،\nومن شرِّ كلِّ نفسٍ أو عينٍ حاسد، اللهُ يشفيك.', src:'صحيح مسلم' },
+      { text:'اللهمَّ اشفِ مرضانا وعافِهم وعافِنا،\nوارزُقنا صحَّةً في الأبدان وسلامةً في الأديان.', src:'' },
+    ]
+  },
+  {
+    id:'akhira', label:'الآخرة والجنة',
+    title:'— الآخرةُ والفوزُ بالجنَّةِ والنَّجاةُ من النَّار —',
+    duas:[
+      { text:'اللهمَّ إنِّي أعوذُ بك من عذابِ القبر ومن عذابِ النَّار،\nومن فتنة المحيا والممات ومن فتنة المسيح الدَّجَّال.', src:'متفق عليه' },
+      { text:'اللهمَّ إنِّي أسألُك الجنَّةَ وما قرَّب إليها من قولٍ أو عمل،\nوأعوذُ بك من النَّار وما قرَّب إليها من قولٍ أو عمل.', src:'صحيح ابن ماجه' },
+      { text:'اللهمَّ إنِّي أسألُك الفوزَ عند القضاء ومنازلَ الشُّهداء\nوعيشَ السُّعداء والنَّصرَ على الأعداء.', src:'صحيح النَّسائي' },
+      { text:'اللهمَّ اختِم لي بالإيمان واختِم لي بالإسلام،\nواختِم لي بأعمالٍ صالحةٍ ترضاها عنِّي.', src:'' },
+      { text:'اللهمَّ حاسِبني حسابًا يسيرًا وأعطني كتابي بيميني،\nوأدخِلني الجنَّةَ برحمتِك مع عبادِك الصَّالحين.', src:'' },
+      { text:'اللهمَّ توفَّني مسلمًا وألحِقني بالصَّالحين ولا تُخزِني يومَ القيامة.', src:'سورة يوسف: ١٠١' },
+    ]
+  },
+  {
+    id:'jawami', label:'الدعاء الجامع',
+    title:'— الدُّعاءُ الجامعُ الخاتِم —',
+    duas:[
+      { text:'اللهمَّ أصلِح لي ديني الذي هو عِصمةُ أمري،\nودُنيايَ التي فيها معاشي، وآخرتي التي فيها معادي،\nواجعل الحياةَ زيادةً لي في كلِّ خيرٍ والموتَ راحةً لي من كلِّ شرٍّ.', src:'صحيح مسلم' },
+      { text:'اللهمَّ إنِّي أسألُك من الخير كلِّه عاجلِه وآجلِه،\nما علمتُ منه وما لم أعلم،\nوأعوذُ بك من الشرِّ كلِّه عاجلِه وآجلِه.', src:'صحيح أحمد' },
+      { text:'اللهمَّ احفظنا في أنفُسِنا وأهلِينا وأموالِنا وديننا،\nواكفِنا شرَّ كلِّ ذي شرٍّ وحاسدٍ وعدو.', src:'' },
+      { text:'اللهمَّ اجعل خيرَ عُمرنا آخرَه، وخيرَ عملِنا خواتيمَه،\nوخيرَ أيَّامنا يومَ نلقاك.', src:'صحيح الطَّبراني' },
+      { text:'ربَّنا آتِنا في الدُّنيا حسنةً وفي الآخرة حسنةً وقِنا عذابَ النَّار،\nوأدخِلنا الجنَّةَ مع الأبرار يا عزيزُ يا غفَّار.', src:'سورة البقرة: ٢٠١' },
+    ]
+  },
+  {
+    id:'tasbih', label:'🔢 التسبيح والذكر',
+    title:'— الأذكارُ اليَّوميَّةُ مع العَدَّاد —',
+    type:'tasbih',
+    items:[
+      { text:'سبحانَ الله وبحمده', target:100, note:'تُحَطُّ الخطايا وإن كانت مثل زبد البحر', src:'متفق عليه' },
+      { text:'لا إله إلَّا اللهُ وحده لا شريكَ له\nله المُلكُ وله الحمد وهو على كلِّ شيءٍ قدير', target:100, note:'عِدلُ عَشرة رقاب وتُكتبُ مئةُ حسنة', src:'متفق عليه' },
+      { text:'سبحانَ الله', target:33, note:'بعد كل صلاة', src:'متفق عليه' },
+      { text:'الحمد لله', target:33, note:'بعد كل صلاة', src:'متفق عليه' },
+      { text:'الله أكبر', target:33, note:'بعد كل صلاة', src:'متفق عليه' },
+      { text:'أستغفرُ اللهَ وأتوبُ إليه', target:100, note:'١٠٠ مرَّة في اليوم', src:'صحيح البخاري' },
+      { text:'اللهمَّ صلِّ على محمَّد', target:10, note:'١٠ صباحًا و١٠ مساءً', src:'صحيح مسلم' },
+      { text:'حسبيَ اللهُ لا إله إلَّا هو\nعليه توكَّلتُ وهو ربُّ العرش العظيم', target:7, note:'٧ صباحًا و٧ مساءً', src:'سورة التَّوبة: ١٢٩' },
+      { text:'بسم الله الذي لا يضرُّ مع اسمه شيءٌ\nفي الأرض ولا في السَّماء', target:3, note:'٣ صباحًا و٣ مساءً', src:'صحيح أبو داود' },
+      { text:'لا حولَ ولا قوَّةَ إلَّا بالله العليِّ العظيم', target:100, note:'كنزٌ من كنوز الجنَّة', src:'متفق عليه' },
+      { text:'سبحانَ اللهِ العظيم وبحمده', target:1, note:'مرَّةً تُزرعُ نخلةٌ في الجنَّة', src:'صحيح الترمذي' },
+      { text:'أعوذُ بكلمات الله التَّامَّات\nمن شرِّ ما خلق', target:3, note:'٣ مرَّات مساءً', src:'صحيح مسلم' },
+    ]
+  },
+];
+
+// ── build tabs & sections ──────────────────────────────────────────
+const navEl  = document.getElementById('navTabs');
+const mainEl = document.getElementById('mainContent');
+const counters = {};
+
+SECTIONS.forEach((sec, si) => {
+  // tab
+  const btn = document.createElement('button');
+  btn.className = 'tab-btn' + (si===0?' active':'');
+  btn.textContent = sec.label;
+  btn.onclick = () => switchTab(sec.id);
+  navEl.appendChild(btn);
+
+  // section div
+  const div = document.createElement('div');
+  div.className = 'section' + (si===0?' active':'');
+  div.id = 'sec-' + sec.id;
+
+  const hdr = document.createElement('div');
+  hdr.className = 'sec-header';
+  hdr.textContent = sec.title;
+  div.appendChild(hdr);
+
+  if (sec.type === 'tasbih') {
+    const grid = document.createElement('div');
+    grid.className = 'tasbih-grid';
+    sec.items.forEach((item, ii) => {
+      const key = sec.id + '-' + ii;
+      counters[key] = 0;
+      grid.appendChild(buildTasbihCard(item, key));
+    });
+    div.appendChild(grid);
+  } else {
+    sec.duas.forEach(d => {
+      const card = document.createElement('div');
+      card.className = 'dua-card';
+      const txt = document.createElement('div');
+      txt.className = 'dua-text';
+      txt.innerHTML = d.text.replace(/\n/g,'<br>');
+      card.appendChild(txt);
+      if (d.src) {
+        const src = document.createElement('div');
+        src.className = 'dua-source';
+        src.textContent = d.src;
+        card.appendChild(src);
+      }
+      div.appendChild(card);
+    });
+  }
+  mainEl.appendChild(div);
+});
+
+function buildTasbihCard(item, key) {
+  const card = document.createElement('div');
+  card.className = 'tasbih-card';
+
+  const lbl = document.createElement('div');
+  lbl.className = 'tasbih-label';
+  lbl.innerHTML = item.text.replace(/\n/g,'<br>');
+  card.appendChild(lbl);
+
+  const sub = document.createElement('div');
+  sub.className = 'tasbih-sublabel';
+  sub.textContent = item.note + ' — ' + item.src;
+  card.appendChild(sub);
+
+  const cw = document.createElement('div');
+  cw.className = 'counter-wrap';
+
+  const num = document.createElement('div');
+  num.className = 'counter-num';
+  num.id = 'num-' + key;
+  num.textContent = '٠';
+
+  const btn = document.createElement('button');
+  btn.className = 'btn-count';
+  btn.innerHTML = '+';
+  btn.setAttribute('aria-label', 'عَدَّ');
+  btn.onclick = () => increment(key, item.target, num, bar, badge);
+
+  cw.appendChild(num);
+  cw.appendChild(btn);
+  card.appendChild(cw);
+
+  const foot = document.createElement('div');
+  foot.className = 'tasbih-footer';
+
+  const pbw = document.createElement('div');
+  pbw.className = 'progress-bar-wrap';
+  const bar = document.createElement('div');
+  bar.className = 'progress-bar';
+  bar.id = 'bar-' + key;
+  pbw.appendChild(bar);
+
+  const tgt = document.createElement('span');
+  tgt.className = 'target-label';
+  tgt.textContent = '/ ' + toArabicNum(item.target);
+
+  const badge = document.createElement('div');
+  badge.className = 'complete-badge';
+  badge.id = 'badge-' + key;
+  badge.textContent = '✓ اكتمل';
+
+  const rst = document.createElement('button');
+  rst.className = 'btn-reset';
+  rst.textContent = 'إعادة';
+  rst.onclick = () => reset(key, num, bar, badge);
+
+  foot.appendChild(rst);
+  foot.appendChild(badge);
+  foot.appendChild(tgt);
+  foot.appendChild(pbw);
+  card.appendChild(foot);
+  return card;
+}
+
+function toArabicNum(n) {
+  return n.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+}
+
+function increment(key, target, numEl, barEl, badgeEl) {
+  counters[key]++;
+  numEl.textContent = toArabicNum(counters[key]);
+  numEl.classList.remove('pop');
+  void numEl.offsetWidth;
+  numEl.classList.add('pop');
+  setTimeout(()=>numEl.classList.remove('pop'),120);
+
+  const pct = Math.min(100, (counters[key]/target)*100);
+  barEl.style.width = pct + '%';
+
+  if (counters[key] >= target) {
+    badgeEl.style.display = 'inline-block';
+    // vibrate on mobile
+    if (navigator.vibrate) navigator.vibrate([30,20,30]);
+  }
+}
+
+function reset(key, numEl, barEl, badgeEl) {
+  counters[key] = 0;
+  numEl.textContent = '٠';
+  barEl.style.width = '0%';
+  badgeEl.style.display = 'none';
+}
+
+function switchTab(id) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
+    b.classList.toggle('active', SECTIONS[i].id === id);
+  });
+  document.querySelectorAll('.section').forEach(s => {
+    s.classList.toggle('active', s.id === 'sec-'+id);
+  });
+  // scroll active tab into view
+  const idx = SECTIONS.findIndex(s=>s.id===id);
+  navEl.children[idx]?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+}
+</script>
+</body>
+</html>
